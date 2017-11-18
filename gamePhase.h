@@ -15,7 +15,7 @@
 // Delay between display on and game start (minimum 1)
 #define START_DELAY			10
 // Delay between meeting win/lose condition and game screen fade out
-#define END_DELAY			50
+#define END_DELAY			80
 
 // Level map nametables
 #include "level_test.h"
@@ -523,6 +523,14 @@ void gamePhase(void)
 				// Set current player pos as "previous" pos for the next frame
 				player_prevTileX = player_nextTileX;
 				player_prevTileY = player_nextTileY;
+				
+				// If both "blanker" and "emptier" work on the same tile,
+				//	"blanker" takes priority
+				if (updateList[12] == updateList[0] && updateList[13] == updateList[1])
+				{
+					updateList[0] = updateList[3] = updateList[6] = updateList[9] = 0x28;
+					updateList[1] = updateList[4] = updateList[7] = updateList[10] = 0x00;
+				}
 				
 				// Keep player moving in same direction until hitting a wall or until another possible move direction is selected
 				checkPlayerMove(player_nextDir);
