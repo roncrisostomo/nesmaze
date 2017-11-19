@@ -9,8 +9,8 @@
 *		> Holds code used exclusively in the result phase
 ******************************************************************************/
 
-#include "result_success.h"
-#include "result_failure.h"
+#include "nametables/result_success.h"
+#include "nametables/result_failure.h"
 
 void resultPhase(void)
 {

@@ -237,17 +237,17 @@ detectNTSC:
 .segment "RODATA"
 
 music_data:
-	.include "music.s"
+	.include "../soundsAndMusic/music.s"
 
 .if(FT_SFX_ENABLE)
 sounds_data:
-	.include "sounds.s"
+	.include "../soundsAndMusic/sounds.s"
 .endif
 
 .segment "SAMPLES"
 
 .if(FT_DPCM_ENABLE)
-	.incbin "music_dpcm.bin"
+	.incbin "../soundsAndMusic/music_dpcm.bin"
 .endif
 
 .segment "VECTORS"
@@ -258,4 +258,4 @@ sounds_data:
 
 
 .segment "CHARS"
-	.incbin "tileset.chr"
+	.incbin "../../graphics/tileset.chr"

@@ -10,7 +10,7 @@
 *		code for general use throughout game
 ******************************************************************************/
  
-#include "neslib.h"
+#include "lib/neslib.h"
 
 // Game uses 12:4 fixed point calculations
 #define FP_BITS	4
@@ -57,7 +57,7 @@ static unsigned char bright;
 // Following variables will go to the default RAM location (BSS)
 
 // Include sound and music handler
-#include "soundsAndMusic.h"
+#include "soundsAndMusic/soundsAndMusic.h"
 
 // Smoothly fade current bright to the given value
 // When to=0, stop music, turn display off, reset vram update and scroll

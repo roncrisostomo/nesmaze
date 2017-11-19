@@ -18,8 +18,8 @@
 #define END_DELAY			80
 
 // Level map nametables
-#include "level_test.h"
-#include "level_test2.h"
+#include "nametables/level_test.h"
+#include "nametables/level_test2.h"
 
 // Level map palettes
 const unsigned char pal_level_test[16] = { 0x0f,0x00,0x10,0x30,0x0f,0x01,0x21,0x31,0x0f,0x06,0x16,0x26,0x0f,0x09,0x19,0x29 };

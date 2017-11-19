@@ -10,7 +10,7 @@
 ******************************************************************************/
 
 // Nametables for game screens
-#include "title_nam.h"
+#include "nametables/title_nam.h"
 
 // Index of color of "press start" text in title palette, used for blinking animation
 #define PRESS_START_PAL_INDEX 6
