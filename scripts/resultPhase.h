@@ -3,7 +3,7 @@
 *  @brief      	Result phase handler
 *  @author     	Ron
 *  @created 	November 17, 2017
-*  @modified   	November 18, 2017
+*  @modified   	November 19, 2017
 *      
 *  @par [explanation]
 *		> Holds code used exclusively in the result phase
@@ -11,6 +11,9 @@
 
 #include "nametables/result_success.h"
 #include "nametables/result_failure.h"
+
+// Nametable position and length of "score" text
+#define SCORE_TEXT_ADR 	(NTADR_A(13,18))
 
 void resultPhase(void)
 {
@@ -26,6 +29,43 @@ void resultPhase(void)
 	if (gameClear)
 	{
 		vram_unrle(result_success);
+		
+		// Write "score" text horizontally centered on screen
+		if (totalItemsCollected5 > 0)
+		{
+			vram_adr(SCORE_TEXT_ADR);
+			vram_put(0x10 + totalItemsCollected5);
+			vram_put(0x10 + totalItemsCollected4);
+			vram_put(0x10 + totalItemsCollected3);
+			vram_put(0x10 + totalItemsCollected2);
+			vram_put(0x10 + totalItemsCollected1);
+		}
+		else if (totalItemsCollected4 > 0)
+		{
+			vram_adr(SCORE_TEXT_ADR + 1);
+			vram_put(0x10 + totalItemsCollected4);
+			vram_put(0x10 + totalItemsCollected3);
+			vram_put(0x10 + totalItemsCollected2);
+			vram_put(0x10 + totalItemsCollected1);
+		}
+		else if (totalItemsCollected3 > 0)
+		{
+			vram_adr(SCORE_TEXT_ADR + 1);
+			vram_put(0x10 + totalItemsCollected3);
+			vram_put(0x10 + totalItemsCollected2);
+			vram_put(0x10 + totalItemsCollected1);
+		}
+		else if (totalItemsCollected2 > 0)
+		{
+			vram_adr(SCORE_TEXT_ADR + 2);
+			vram_put(0x10 + totalItemsCollected2);
+			vram_put(0x10 + totalItemsCollected1);
+		}
+		else
+		{
+			vram_adr(SCORE_TEXT_ADR + 2);
+			vram_put(0x10 + totalItemsCollected1);
+		}
 	}
 	else
 	{

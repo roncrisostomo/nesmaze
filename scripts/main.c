@@ -3,7 +3,7 @@
 *  @brief      	Main game code file
 *  @author     	Ron
 *  @created 	November 14, 2017
-*  @modified   	November 18, 2017
+*  @modified   	November 19, 2017
 *      
 *  @par [explanation]
 *		> Used for global variable declarations, defines, and other
@@ -52,6 +52,13 @@ static unsigned char gameLevel;
 // Used in fade functions (pal_fade_to, game loop fade)
 static unsigned char bright;
 
+// Total number of collected items
+static unsigned char totalItemsCollected5;	// x0000
+static unsigned char totalItemsCollected4;	// 0x000
+static unsigned char totalItemsCollected3;	// 00x00
+static unsigned char totalItemsCollected2;	// 000x0
+static unsigned char totalItemsCollected1;	// 0000x
+
 #pragma data-name(pop)
 #pragma bss-name (pop)
 // Following variables will go to the default RAM location (BSS)
@@ -81,6 +88,7 @@ void pal_fade_to(unsigned to)
 	}
 }
 
+#include "gameConstants.h"
 #include "titlePhase.h"
 #include "gamePhase.h"
 #include "resultPhase.h"
@@ -92,7 +100,7 @@ void main(void)
 	{
 		titlePhase();
 		
-		gameLevel = 0;
+		gameLevel = LEVEL_START;
 		gameDone = FALSE;
 		
 		while (!gameDone)

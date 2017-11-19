@@ -10,16 +10,18 @@
 	.importzp	sp, sreg, regsave, regbank
 	.importzp	tmp1, tmp2, tmp3, tmp4, ptr1, ptr2, ptr3, ptr4
 	.macpack	longbranch
-	.dbg		file, "scripts\main.c", 2437, 1511062518
+	.dbg		file, "scripts\main.c", 2770, 1511076572
 	.dbg		file, "scripts/lib/neslib.h", 8325, 1510735219
 	.dbg		file, "scripts/soundsAndMusic/soundsAndMusic.h", 769, 1510971067
+	.dbg		file, "scripts/gameConstants.h", 803, 1511081733
 	.dbg		file, "scripts/titlePhase.h", 2058, 1511062250
 	.dbg		file, "scripts/nametables/title_nam.h", 1338, 1511018643
-	.dbg		file, "scripts/gamePhase.h", 16840, 1511062257
-	.dbg		file, "scripts/nametables/level_test.h", 3436, 1510984341
-	.dbg		file, "scripts/nametables/level_test2.h", 4369, 1511014731
-	.dbg		file, "scripts/resultPhase.h", 1133, 1511062294
-	.dbg		file, "scripts/nametables/result_success.h", 627, 1510970569
+	.dbg		file, "scripts/gamePhase.h", 17979, 1511081487
+	.dbg		file, "scripts/nametables/level_test.h", 3421, 1511082180
+	.dbg		file, "scripts/nametables/level_test2.h", 4436, 1511082138
+	.dbg		file, "scripts/nametables/level_test3.h", 4242, 1511082083
+	.dbg		file, "scripts/resultPhase.h", 2304, 1511080893
+	.dbg		file, "scripts/nametables/result_success.h", 796, 1511079353
 	.dbg		file, "scripts/nametables/result_failure.h", 554, 1510970384
 	.forceimport	__STARTUP__
 	.dbg		sym, "pal_bg", "00", extern, "_pal_bg"
@@ -82,10 +84,12 @@
 	.export		_titlePhase
 	.export		_level_test
 	.export		_level_test2
+	.export		_level_test3
 	.export		_pal_level_test
 	.export		_palGameSpr
 	.export		_hudLabels
 	.export		_playerMetasprite
+	.export		_enemyMetasprite
 	.export		_updateListData
 	.export		_incrementTotalItemsCollected
 	.export		_updateHUD
@@ -832,10 +836,9 @@ _level_test:
 	.byte	$42
 	.byte	$43
 	.byte	$33
-	.byte	$00
 	.byte	$44
 	.byte	$01
-	.byte	$09
+	.byte	$0A
 	.byte	$45
 	.byte	$46
 	.byte	$45
@@ -856,11 +859,9 @@ _level_test:
 	.byte	$46
 	.byte	$40
 	.byte	$41
-	.byte	$00
-	.byte	$00
 	.byte	$44
 	.byte	$01
-	.byte	$09
+	.byte	$0B
 	.byte	$47
 	.byte	$48
 	.byte	$47
@@ -1011,7 +1012,7 @@ _level_test:
 	.byte	$AA
 	.byte	$01
 	.byte	$05
-	.byte	$EE
+	.byte	$E6
 	.byte	$BB
 	.byte	$AA
 	.byte	$01
@@ -1027,7 +1028,7 @@ _level_test:
 	.byte	$01
 	.byte	$05
 	.byte	$EE
-	.byte	$BB
+	.byte	$BA
 	.byte	$AA
 	.byte	$01
 	.byte	$05
@@ -1316,14 +1317,6 @@ _level_test2:
 	.byte	$46
 	.byte	$45
 	.byte	$46
-	.byte	$44
-	.byte	$44
-	.byte	$40
-	.byte	$41
-	.byte	$40
-	.byte	$41
-	.byte	$45
-	.byte	$46
 	.byte	$45
 	.byte	$46
 	.byte	$40
@@ -1336,6 +1329,75 @@ _level_test2:
 	.byte	$46
 	.byte	$40
 	.byte	$41
+	.byte	$40
+	.byte	$41
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$40
+	.byte	$41
+	.byte	$42
+	.byte	$43
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$42
+	.byte	$43
+	.byte	$42
+	.byte	$43
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$42
+	.byte	$43
+	.byte	$42
+	.byte	$43
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$42
+	.byte	$43
+	.byte	$40
+	.byte	$41
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$44
+	.byte	$01
+	.byte	$05
+	.byte	$40
+	.byte	$41
+	.byte	$40
+	.byte	$41
+	.byte	$44
+	.byte	$44
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$40
+	.byte	$41
 	.byte	$42
 	.byte	$43
 	.byte	$47
@@ -1349,19 +1411,16 @@ _level_test2:
 	.byte	$47
 	.byte	$48
 	.byte	$44
+	.byte	$01
+	.byte	$05
+	.byte	$42
+	.byte	$43
+	.byte	$42
+	.byte	$43
 	.byte	$44
-	.byte	$42
-	.byte	$43
-	.byte	$42
-	.byte	$43
+	.byte	$44
 	.byte	$47
 	.byte	$48
-	.byte	$47
-	.byte	$48
-	.byte	$42
-	.byte	$43
-	.byte	$42
-	.byte	$43
 	.byte	$47
 	.byte	$48
 	.byte	$47
@@ -1380,15 +1439,11 @@ _level_test2:
 	.byte	$46
 	.byte	$44
 	.byte	$01
-	.byte	$07
-	.byte	$40
-	.byte	$41
-	.byte	$40
-	.byte	$41
-	.byte	$44
-	.byte	$44
-	.byte	$40
-	.byte	$41
+	.byte	$0B
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
 	.byte	$45
 	.byte	$46
 	.byte	$45
@@ -1407,51 +1462,9 @@ _level_test2:
 	.byte	$48
 	.byte	$44
 	.byte	$01
-	.byte	$07
-	.byte	$42
-	.byte	$43
-	.byte	$42
-	.byte	$43
-	.byte	$44
-	.byte	$44
-	.byte	$42
-	.byte	$43
+	.byte	$0B
 	.byte	$47
 	.byte	$48
-	.byte	$47
-	.byte	$48
-	.byte	$42
-	.byte	$43
-	.byte	$40
-	.byte	$41
-	.byte	$45
-	.byte	$46
-	.byte	$45
-	.byte	$46
-	.byte	$40
-	.byte	$41
-	.byte	$44
-	.byte	$01
-	.byte	$0F
-	.byte	$45
-	.byte	$46
-	.byte	$45
-	.byte	$46
-	.byte	$45
-	.byte	$46
-	.byte	$40
-	.byte	$41
-	.byte	$42
-	.byte	$43
-	.byte	$47
-	.byte	$48
-	.byte	$47
-	.byte	$48
-	.byte	$42
-	.byte	$43
-	.byte	$44
-	.byte	$01
-	.byte	$0F
 	.byte	$47
 	.byte	$48
 	.byte	$47
@@ -1466,8 +1479,8 @@ _level_test2:
 	.byte	$46
 	.byte	$45
 	.byte	$46
-	.byte	$40
-	.byte	$41
+	.byte	$45
+	.byte	$46
 	.byte	$44
 	.byte	$44
 	.byte	$40
@@ -1476,7 +1489,9 @@ _level_test2:
 	.byte	$41
 	.byte	$44
 	.byte	$01
-	.byte	$07
+	.byte	$05
+	.byte	$45
+	.byte	$46
 	.byte	$45
 	.byte	$46
 	.byte	$45
@@ -1493,8 +1508,8 @@ _level_test2:
 	.byte	$48
 	.byte	$47
 	.byte	$48
-	.byte	$42
-	.byte	$43
+	.byte	$47
+	.byte	$48
 	.byte	$44
 	.byte	$44
 	.byte	$42
@@ -1503,7 +1518,9 @@ _level_test2:
 	.byte	$43
 	.byte	$44
 	.byte	$01
-	.byte	$07
+	.byte	$05
+	.byte	$47
+	.byte	$48
 	.byte	$47
 	.byte	$48
 	.byte	$47
@@ -1532,8 +1549,8 @@ _level_test2:
 	.byte	$41
 	.byte	$40
 	.byte	$41
-	.byte	$44
-	.byte	$44
+	.byte	$45
+	.byte	$46
 	.byte	$45
 	.byte	$46
 	.byte	$45
@@ -1564,8 +1581,8 @@ _level_test2:
 	.byte	$43
 	.byte	$42
 	.byte	$43
-	.byte	$44
-	.byte	$44
+	.byte	$47
+	.byte	$48
 	.byte	$47
 	.byte	$48
 	.byte	$47
@@ -1643,10 +1660,9 @@ _level_test2:
 	.byte	$42
 	.byte	$43
 	.byte	$33
-	.byte	$00
 	.byte	$44
 	.byte	$01
-	.byte	$03
+	.byte	$04
 	.byte	$40
 	.byte	$41
 	.byte	$45
@@ -1673,11 +1689,9 @@ _level_test2:
 	.byte	$46
 	.byte	$40
 	.byte	$41
-	.byte	$00
-	.byte	$00
 	.byte	$44
 	.byte	$01
-	.byte	$03
+	.byte	$05
 	.byte	$42
 	.byte	$43
 	.byte	$47
@@ -1846,17 +1860,17 @@ _level_test2:
 	.byte	$AA
 	.byte	$AA
 	.byte	$BB
-	.byte	$EE
+	.byte	$E6
 	.byte	$BB
 	.byte	$AA
 	.byte	$AA
 	.byte	$AE
 	.byte	$EB
 	.byte	$BE
-	.byte	$BB
+	.byte	$AB
 	.byte	$EE
 	.byte	$BB
-	.byte	$EE
+	.byte	$AA
 	.byte	$EA
 	.byte	$BA
 	.byte	$AA
@@ -1871,12 +1885,832 @@ _level_test2:
 	.byte	$FA
 	.byte	$BA
 	.byte	$EE
-	.byte	$BB
+	.byte	$BA
 	.byte	$EE
 	.byte	$AA
 	.byte	$01
 	.byte	$04
 	.byte	$EE
+	.byte	$0F
+	.byte	$01
+	.byte	$06
+	.byte	$0F
+	.byte	$01
+	.byte	$00
+_level_test3:
+	.byte	$01
+	.byte	$00
+	.byte	$01
+	.byte	$47
+	.byte	$D4
+	.byte	$D4
+	.byte	$00
+	.byte	$01
+	.byte	$2C
+	.byte	$D4
+	.byte	$00
+	.byte	$01
+	.byte	$0B
+	.byte	$40
+	.byte	$41
+	.byte	$40
+	.byte	$41
+	.byte	$40
+	.byte	$41
+	.byte	$40
+	.byte	$41
+	.byte	$40
+	.byte	$41
+	.byte	$40
+	.byte	$41
+	.byte	$40
+	.byte	$41
+	.byte	$40
+	.byte	$41
+	.byte	$40
+	.byte	$41
+	.byte	$40
+	.byte	$41
+	.byte	$40
+	.byte	$41
+	.byte	$00
+	.byte	$01
+	.byte	$09
+	.byte	$42
+	.byte	$43
+	.byte	$42
+	.byte	$43
+	.byte	$42
+	.byte	$43
+	.byte	$42
+	.byte	$43
+	.byte	$42
+	.byte	$43
+	.byte	$42
+	.byte	$43
+	.byte	$42
+	.byte	$43
+	.byte	$42
+	.byte	$43
+	.byte	$42
+	.byte	$43
+	.byte	$42
+	.byte	$43
+	.byte	$42
+	.byte	$43
+	.byte	$00
+	.byte	$01
+	.byte	$09
+	.byte	$40
+	.byte	$41
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$40
+	.byte	$41
+	.byte	$40
+	.byte	$41
+	.byte	$40
+	.byte	$41
+	.byte	$40
+	.byte	$41
+	.byte	$00
+	.byte	$01
+	.byte	$03
+	.byte	$42
+	.byte	$43
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$42
+	.byte	$43
+	.byte	$42
+	.byte	$43
+	.byte	$42
+	.byte	$43
+	.byte	$42
+	.byte	$43
+	.byte	$00
+	.byte	$01
+	.byte	$03
+	.byte	$40
+	.byte	$41
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$40
+	.byte	$41
+	.byte	$44
+	.byte	$44
+	.byte	$10
+	.byte	$44
+	.byte	$25
+	.byte	$38
+	.byte	$00
+	.byte	$01
+	.byte	$03
+	.byte	$42
+	.byte	$43
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$42
+	.byte	$43
+	.byte	$44
+	.byte	$01
+	.byte	$03
+	.byte	$29
+	.byte	$34
+	.byte	$00
+	.byte	$01
+	.byte	$03
+	.byte	$40
+	.byte	$41
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$40
+	.byte	$41
+	.byte	$40
+	.byte	$41
+	.byte	$40
+	.byte	$41
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$40
+	.byte	$41
+	.byte	$45
+	.byte	$46
+	.byte	$40
+	.byte	$41
+	.byte	$40
+	.byte	$41
+	.byte	$00
+	.byte	$01
+	.byte	$03
+	.byte	$42
+	.byte	$43
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$42
+	.byte	$43
+	.byte	$42
+	.byte	$43
+	.byte	$42
+	.byte	$43
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$42
+	.byte	$43
+	.byte	$47
+	.byte	$48
+	.byte	$42
+	.byte	$43
+	.byte	$42
+	.byte	$43
+	.byte	$00
+	.byte	$01
+	.byte	$03
+	.byte	$40
+	.byte	$41
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$40
+	.byte	$41
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$40
+	.byte	$41
+	.byte	$40
+	.byte	$41
+	.byte	$45
+	.byte	$46
+	.byte	$40
+	.byte	$41
+	.byte	$00
+	.byte	$01
+	.byte	$05
+	.byte	$42
+	.byte	$43
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$42
+	.byte	$43
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$42
+	.byte	$43
+	.byte	$42
+	.byte	$43
+	.byte	$47
+	.byte	$48
+	.byte	$42
+	.byte	$43
+	.byte	$00
+	.byte	$01
+	.byte	$03
+	.byte	$40
+	.byte	$41
+	.byte	$40
+	.byte	$41
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$44
+	.byte	$01
+	.byte	$03
+	.byte	$40
+	.byte	$41
+	.byte	$40
+	.byte	$41
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$40
+	.byte	$41
+	.byte	$00
+	.byte	$01
+	.byte	$03
+	.byte	$42
+	.byte	$43
+	.byte	$42
+	.byte	$43
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$44
+	.byte	$01
+	.byte	$03
+	.byte	$42
+	.byte	$43
+	.byte	$42
+	.byte	$43
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$42
+	.byte	$43
+	.byte	$00
+	.byte	$01
+	.byte	$03
+	.byte	$40
+	.byte	$41
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$44
+	.byte	$01
+	.byte	$07
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$40
+	.byte	$41
+	.byte	$00
+	.byte	$01
+	.byte	$03
+	.byte	$42
+	.byte	$43
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$44
+	.byte	$01
+	.byte	$07
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$42
+	.byte	$43
+	.byte	$00
+	.byte	$01
+	.byte	$03
+	.byte	$40
+	.byte	$41
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$40
+	.byte	$41
+	.byte	$40
+	.byte	$41
+	.byte	$44
+	.byte	$01
+	.byte	$03
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$40
+	.byte	$41
+	.byte	$40
+	.byte	$41
+	.byte	$00
+	.byte	$01
+	.byte	$03
+	.byte	$42
+	.byte	$43
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$42
+	.byte	$43
+	.byte	$42
+	.byte	$43
+	.byte	$44
+	.byte	$01
+	.byte	$03
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$42
+	.byte	$43
+	.byte	$42
+	.byte	$43
+	.byte	$00
+	.byte	$01
+	.byte	$03
+	.byte	$40
+	.byte	$41
+	.byte	$45
+	.byte	$46
+	.byte	$40
+	.byte	$41
+	.byte	$40
+	.byte	$41
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$40
+	.byte	$41
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$40
+	.byte	$41
+	.byte	$00
+	.byte	$01
+	.byte	$05
+	.byte	$42
+	.byte	$43
+	.byte	$47
+	.byte	$48
+	.byte	$42
+	.byte	$43
+	.byte	$42
+	.byte	$43
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$42
+	.byte	$43
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$42
+	.byte	$43
+	.byte	$00
+	.byte	$01
+	.byte	$03
+	.byte	$40
+	.byte	$41
+	.byte	$40
+	.byte	$41
+	.byte	$45
+	.byte	$46
+	.byte	$40
+	.byte	$41
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$40
+	.byte	$41
+	.byte	$40
+	.byte	$41
+	.byte	$40
+	.byte	$41
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$40
+	.byte	$41
+	.byte	$00
+	.byte	$01
+	.byte	$03
+	.byte	$42
+	.byte	$43
+	.byte	$42
+	.byte	$43
+	.byte	$47
+	.byte	$48
+	.byte	$42
+	.byte	$43
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$42
+	.byte	$43
+	.byte	$42
+	.byte	$43
+	.byte	$42
+	.byte	$43
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$42
+	.byte	$43
+	.byte	$00
+	.byte	$01
+	.byte	$03
+	.byte	$33
+	.byte	$44
+	.byte	$01
+	.byte	$04
+	.byte	$40
+	.byte	$41
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$40
+	.byte	$41
+	.byte	$00
+	.byte	$01
+	.byte	$03
+	.byte	$44
+	.byte	$01
+	.byte	$05
+	.byte	$42
+	.byte	$43
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$42
+	.byte	$43
+	.byte	$00
+	.byte	$01
+	.byte	$03
+	.byte	$40
+	.byte	$41
+	.byte	$40
+	.byte	$41
+	.byte	$40
+	.byte	$41
+	.byte	$40
+	.byte	$41
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$45
+	.byte	$46
+	.byte	$40
+	.byte	$41
+	.byte	$00
+	.byte	$01
+	.byte	$03
+	.byte	$42
+	.byte	$43
+	.byte	$42
+	.byte	$43
+	.byte	$42
+	.byte	$43
+	.byte	$42
+	.byte	$43
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$42
+	.byte	$43
+	.byte	$00
+	.byte	$01
+	.byte	$09
+	.byte	$40
+	.byte	$41
+	.byte	$40
+	.byte	$41
+	.byte	$40
+	.byte	$41
+	.byte	$40
+	.byte	$41
+	.byte	$40
+	.byte	$41
+	.byte	$40
+	.byte	$41
+	.byte	$40
+	.byte	$41
+	.byte	$40
+	.byte	$41
+	.byte	$40
+	.byte	$41
+	.byte	$40
+	.byte	$41
+	.byte	$40
+	.byte	$41
+	.byte	$00
+	.byte	$01
+	.byte	$09
+	.byte	$42
+	.byte	$43
+	.byte	$42
+	.byte	$43
+	.byte	$42
+	.byte	$43
+	.byte	$42
+	.byte	$43
+	.byte	$42
+	.byte	$43
+	.byte	$42
+	.byte	$43
+	.byte	$42
+	.byte	$43
+	.byte	$42
+	.byte	$43
+	.byte	$42
+	.byte	$43
+	.byte	$42
+	.byte	$43
+	.byte	$42
+	.byte	$43
+	.byte	$00
+	.byte	$01
+	.byte	$0B
+	.byte	$FF
+	.byte	$BF
+	.byte	$AF
+	.byte	$01
+	.byte	$03
+	.byte	$FF
+	.byte	$F3
+	.byte	$FF
+	.byte	$BB
+	.byte	$EA
+	.byte	$FA
+	.byte	$AA
+	.byte	$AA
+	.byte	$BB
+	.byte	$F6
+	.byte	$FF
+	.byte	$BB
+	.byte	$AA
+	.byte	$AA
+	.byte	$EB
+	.byte	$BE
+	.byte	$AB
+	.byte	$FF
+	.byte	$FF
+	.byte	$AA
+	.byte	$EA
+	.byte	$BA
+	.byte	$AA
+	.byte	$AA
+	.byte	$EA
+	.byte	$FF
+	.byte	$FF
+	.byte	$EE
+	.byte	$AB
+	.byte	$AE
+	.byte	$FA
+	.byte	$BA
+	.byte	$EE
+	.byte	$FF
+	.byte	$FA
+	.byte	$FE
+	.byte	$AA
+	.byte	$01
+	.byte	$03
+	.byte	$EE
+	.byte	$FF
 	.byte	$0F
 	.byte	$01
 	.byte	$06
@@ -1959,6 +2793,24 @@ _playerMetasprite:
 	.byte	$4C
 	.byte	$00
 	.byte	$80
+_enemyMetasprite:
+	.byte	$00
+	.byte	$FF
+	.byte	$4D
+	.byte	$00
+	.byte	$08
+	.byte	$FF
+	.byte	$4E
+	.byte	$00
+	.byte	$00
+	.byte	$07
+	.byte	$4F
+	.byte	$00
+	.byte	$08
+	.byte	$07
+	.byte	$50
+	.byte	$00
+	.byte	$80
 _updateListData:
 	.byte	$28
 	.byte	$00
@@ -1984,29 +2836,19 @@ _updateListData:
 	.byte	$28
 	.byte	$00
 	.byte	$00
-	.byte	$20
+	.byte	$60
 	.byte	$4B
+	.byte	$05
 	.byte	$10
-	.byte	$20
-	.byte	$4C
 	.byte	$10
-	.byte	$20
-	.byte	$4D
 	.byte	$10
-	.byte	$20
-	.byte	$4E
 	.byte	$10
-	.byte	$20
-	.byte	$4F
 	.byte	$10
-	.byte	$20
+	.byte	$60
 	.byte	$57
+	.byte	$03
 	.byte	$10
-	.byte	$20
-	.byte	$58
 	.byte	$10
-	.byte	$20
-	.byte	$59
 	.byte	$10
 	.byte	$FF
 _result_success:
@@ -2025,7 +2867,7 @@ _result_success:
 	.byte	$A1
 	.byte	$00
 	.byte	$02
-	.byte	$AD
+	.byte	$4D
 	.byte	$37
 	.byte	$D3
 	.byte	$02
@@ -2045,14 +2887,10 @@ _result_success:
 	.byte	$02
 	.byte	$B2
 	.byte	$00
-	.byte	$01
+	.byte	$02
+	.byte	$0B
+	.byte	$1E
 	.byte	$00
-	.byte	$02
-	.byte	$07
-	.byte	$B5
-	.byte	$00
-	.byte	$02
-	.byte	$02
 	.byte	$37
 	.byte	$00
 	.byte	$37
@@ -2071,7 +2909,7 @@ _result_success:
 	.byte	$34
 	.byte	$B5
 	.byte	$00
-	.byte	$01
+	.byte	$1C
 	.byte	$A1
 	.byte	$00
 	.byte	$02
@@ -2093,15 +2931,34 @@ _result_success:
 	.byte	$00
 	.byte	$34
 	.byte	$B5
-	.byte	$01
+	.byte	$00
 	.byte	$00
 	.byte	$A1
+	.byte	$00
+	.byte	$02
+	.byte	$27
+	.byte	$B5
+	.byte	$00
+	.byte	$02
+	.byte	$49
+	.byte	$27
+	.byte	$2F
+	.byte	$34
+	.byte	$00
+	.byte	$02
+	.byte	$7B
+	.byte	$2C
+	.byte	$2F
+	.byte	$2F
+	.byte	$34
+	.byte	$33
+	.byte	$01
 	.byte	$00
 	.byte	$02
 	.byte	$FE
 	.byte	$00
 	.byte	$02
-	.byte	$B0
+	.byte	$18
 	.byte	$B5
 	.byte	$00
 	.byte	$02
@@ -2112,14 +2969,32 @@ _result_success:
 	.byte	$B5
 	.byte	$00
 	.byte	$02
-	.byte	$24
+	.byte	$1C
+	.byte	$50
+	.byte	$02
+	.byte	$05
+	.byte	$00
+	.byte	$00
 	.byte	$44
 	.byte	$55
 	.byte	$02
-	.byte	$04
+	.byte	$03
+	.byte	$54
 	.byte	$00
 	.byte	$02
-	.byte	$1F
+	.byte	$02
+	.byte	$0C
+	.byte	$FF
+	.byte	$FF
+	.byte	$03
+	.byte	$00
+	.byte	$02
+	.byte	$04
+	.byte	$0F
+	.byte	$0F
+	.byte	$00
+	.byte	$02
+	.byte	$11
 	.byte	$00
 	.byte	$02
 	.byte	$00
@@ -2257,19 +3132,6 @@ _gameLevel:
 	.res	1,$00
 _bright:
 	.res	1,$00
-.segment	"BSS"
-_updateList:
-	.res	49,$00
-_map:
-	.res	208,$00
-_nameRow:
-	.res	32,$00
-_levelItemsCount:
-	.res	1,$00
-_levelItemsCollected:
-	.res	1,$00
-_percentCollected:
-	.res	1,$00
 _totalItemsCollected5:
 	.res	1,$00
 _totalItemsCollected4:
@@ -2279,6 +3141,19 @@ _totalItemsCollected3:
 _totalItemsCollected2:
 	.res	1,$00
 _totalItemsCollected1:
+	.res	1,$00
+.segment	"BSS"
+_updateList:
+	.res	39,$00
+_map:
+	.res	208,$00
+_nameRow:
+	.res	32,$00
+_levelItemsCount:
+	.res	1,$00
+_levelItemsCollected:
+	.res	1,$00
+_percentCollected:
 	.res	1,$00
 _player_x:
 	.res	2,$00
@@ -2300,10 +3175,14 @@ _player_moveCounter:
 	.res	2,$00
 _player_speed:
 	.res	2,$00
-_exit_x:
-	.res	2,$00
-_exit_y:
-	.res	2,$00
+_enemy_tileX:
+	.res	1,$00
+_enemy_tileY:
+	.res	1,$00
+_exit_tileX:
+	.res	1,$00
+_exit_tileY:
+	.res	1,$00
 _levelDone:
 	.res	1,$00
 
@@ -2323,12 +3202,12 @@ _levelDone:
 ;
 ; {
 ;
-	.dbg	line, "scripts\main.c", 65
+	.dbg	line, "scripts\main.c", 72
 	jsr     pushax
 ;
 ; if (!to) music_stop();
 ;
-	.dbg	line, "scripts\main.c", 66
+	.dbg	line, "scripts\main.c", 73
 	ldy     #$01
 	lda     (sp),y
 	dey
@@ -2338,18 +3217,18 @@ _levelDone:
 ;
 ; while (bright != to)
 ;
-	.dbg	line, "scripts\main.c", 68
+	.dbg	line, "scripts\main.c", 75
 	jmp     L000D
 ;
 ; delay(4);
 ;
-	.dbg	line, "scripts\main.c", 70
+	.dbg	line, "scripts\main.c", 77
 L000B:	lda     #$04
 	jsr     _delay
 ;
 ; if (bright<to)  ++bright;
 ;
-	.dbg	line, "scripts\main.c", 71
+	.dbg	line, "scripts\main.c", 78
 	ldx     #$00
 	lda     _bright
 	ldy     #$00
@@ -2357,24 +3236,24 @@ L000B:	lda     #$04
 	txa
 	iny
 	sbc     (sp),y
-	bcs     L0AF2
+	bcs     L0F3F
 	inc     _bright
 ;
 ; else    --bright;
 ;
-	.dbg	line, "scripts\main.c", 72
-	jmp     L0AF1
-L0AF2:	dec     _bright
+	.dbg	line, "scripts\main.c", 79
+	jmp     L0F3E
+L0F3F:	dec     _bright
 ;
 ; pal_bright(bright);
 ;
-	.dbg	line, "scripts\main.c", 73
-L0AF1:	lda     _bright
+	.dbg	line, "scripts\main.c", 80
+L0F3E:	lda     _bright
 	jsr     _pal_bright
 ;
 ; while (bright != to)
 ;
-	.dbg	line, "scripts\main.c", 68
+	.dbg	line, "scripts\main.c", 75
 L000D:	ldy     #$01
 	lda     (sp),y
 	tax
@@ -2387,31 +3266,31 @@ L000D:	ldy     #$01
 ;
 ; if (!bright)
 ;
-	.dbg	line, "scripts\main.c", 76
+	.dbg	line, "scripts\main.c", 83
 	lda     _bright
 	bne     L0018
 ;
 ; ppu_off();
 ;
-	.dbg	line, "scripts\main.c", 78
+	.dbg	line, "scripts\main.c", 85
 	jsr     _ppu_off
 ;
 ; set_vram_update(NULL);
 ;
-	.dbg	line, "scripts\main.c", 79
+	.dbg	line, "scripts\main.c", 86
 	ldx     #$00
 	txa
 	jsr     _set_vram_update
 ;
 ; scroll(0,0);
 ;
-	.dbg	line, "scripts\main.c", 80
+	.dbg	line, "scripts\main.c", 87
 	jsr     push0
 	jsr     _scroll
 ;
 ; }
 ;
-	.dbg	line, "scripts\main.c", 82
+	.dbg	line, "scripts\main.c", 89
 L0018:	jmp     incsp2
 	.dbg	line
 
@@ -2541,11 +3420,11 @@ L014B:	lda     #$06
 	jsr     pusha
 	lda     _frameCounter
 	and     #$20
-	beq     L0AF3
+	beq     L0F40
 	lda     #$0F
-	jmp     L0AF4
-L0AF3:	lda     #$22
-L0AF4:	jsr     _pal_col
+	jmp     L0F41
+L0F40:	lda     #$22
+L0F41:	jsr     _pal_col
 ;
 ; while (1)
 ;
@@ -2590,118 +3469,118 @@ L0143:	lda     _j
 ;
 ; totalItemsCollected1++;
 ;
-	.dbg	line, "scripts/gamePhase.h", 148
+	.dbg	line, "scripts/gamePhase.h", 155
 	inc     _totalItemsCollected1
 ;
 ; if (totalItemsCollected1 == 10)
 ;
-	.dbg	line, "scripts/gamePhase.h", 149
+	.dbg	line, "scripts/gamePhase.h", 156
 	lda     _totalItemsCollected1
 	cmp     #$0A
-	bne     L0AF5
+	bne     L0F42
 ;
 ; totalItemsCollected2++;
 ;
-	.dbg	line, "scripts/gamePhase.h", 151
+	.dbg	line, "scripts/gamePhase.h", 158
 	inc     _totalItemsCollected2
 ;
 ; totalItemsCollected1 = 0;
 ;
-	.dbg	line, "scripts/gamePhase.h", 152
+	.dbg	line, "scripts/gamePhase.h", 159
 	lda     #$00
 	sta     _totalItemsCollected1
 ;
 ; if (totalItemsCollected2 == 10)
 ;
-	.dbg	line, "scripts/gamePhase.h", 154
-L0AF5:	lda     _totalItemsCollected2
+	.dbg	line, "scripts/gamePhase.h", 161
+L0F42:	lda     _totalItemsCollected2
 	cmp     #$0A
-	bne     L0AF6
+	bne     L0F43
 ;
 ; totalItemsCollected3++;
 ;
-	.dbg	line, "scripts/gamePhase.h", 156
+	.dbg	line, "scripts/gamePhase.h", 163
 	inc     _totalItemsCollected3
 ;
 ; totalItemsCollected2 = 0;
 ;
-	.dbg	line, "scripts/gamePhase.h", 157
+	.dbg	line, "scripts/gamePhase.h", 164
 	lda     #$00
 	sta     _totalItemsCollected2
 ;
 ; if (totalItemsCollected3 == 10)
 ;
-	.dbg	line, "scripts/gamePhase.h", 159
-L0AF6:	lda     _totalItemsCollected3
+	.dbg	line, "scripts/gamePhase.h", 166
+L0F43:	lda     _totalItemsCollected3
 	cmp     #$0A
-	bne     L0AF7
+	bne     L0F44
 ;
 ; totalItemsCollected4++;
 ;
-	.dbg	line, "scripts/gamePhase.h", 161
+	.dbg	line, "scripts/gamePhase.h", 168
 	inc     _totalItemsCollected4
 ;
 ; totalItemsCollected3 = 0;
 ;
-	.dbg	line, "scripts/gamePhase.h", 162
+	.dbg	line, "scripts/gamePhase.h", 169
 	lda     #$00
 	sta     _totalItemsCollected3
 ;
 ; if (totalItemsCollected4 == 10)
 ;
-	.dbg	line, "scripts/gamePhase.h", 164
-L0AF7:	lda     _totalItemsCollected4
+	.dbg	line, "scripts/gamePhase.h", 171
+L0F44:	lda     _totalItemsCollected4
 	cmp     #$0A
-	bne     L0AF8
+	bne     L0F45
 ;
 ; totalItemsCollected5++;
 ;
-	.dbg	line, "scripts/gamePhase.h", 166
+	.dbg	line, "scripts/gamePhase.h", 173
 	inc     _totalItemsCollected5
 ;
 ; totalItemsCollected4 = 0;
 ;
-	.dbg	line, "scripts/gamePhase.h", 167
+	.dbg	line, "scripts/gamePhase.h", 174
 	lda     #$00
 	sta     _totalItemsCollected4
 ;
 ; if (totalItemsCollected5 == 10)
 ;
-	.dbg	line, "scripts/gamePhase.h", 169
-L0AF8:	lda     _totalItemsCollected5
+	.dbg	line, "scripts/gamePhase.h", 176
+L0F45:	lda     _totalItemsCollected5
 	cmp     #$0A
-	bne     L07DF
+	bne     L0B44
 ;
 ; totalItemsCollected1 = 9;
 ;
-	.dbg	line, "scripts/gamePhase.h", 171
+	.dbg	line, "scripts/gamePhase.h", 178
 	lda     #$09
 	sta     _totalItemsCollected1
 ;
 ; totalItemsCollected2 = 9;
 ;
-	.dbg	line, "scripts/gamePhase.h", 172
+	.dbg	line, "scripts/gamePhase.h", 179
 	sta     _totalItemsCollected2
 ;
 ; totalItemsCollected3 = 9;
 ;
-	.dbg	line, "scripts/gamePhase.h", 173
+	.dbg	line, "scripts/gamePhase.h", 180
 	sta     _totalItemsCollected3
 ;
 ; totalItemsCollected4 = 9;
 ;
-	.dbg	line, "scripts/gamePhase.h", 174
+	.dbg	line, "scripts/gamePhase.h", 181
 	sta     _totalItemsCollected4
 ;
 ; totalItemsCollected5 = 9;
 ;
-	.dbg	line, "scripts/gamePhase.h", 175
+	.dbg	line, "scripts/gamePhase.h", 182
 	sta     _totalItemsCollected5
 ;
 ; }
 ;
-	.dbg	line, "scripts/gamePhase.h", 177
-L07DF:	rts
+	.dbg	line, "scripts/gamePhase.h", 184
+L0B44:	rts
 	.dbg	line
 
 .endproc
@@ -2719,60 +3598,60 @@ L07DF:	rts
 .segment	"CODE"
 
 ;
-; updateList[26] = 0x10 + totalItemsCollected5;
+; updateList[27] = 0x10 + totalItemsCollected5;
 ;
-	.dbg	line, "scripts/gamePhase.h", 183
+	.dbg	line, "scripts/gamePhase.h", 190
 	lda     _totalItemsCollected5
 	clc
 	adc     #$10
-	sta     _updateList+26
+	sta     _updateList+27
 ;
-; updateList[29] = 0x10 + totalItemsCollected4;
+; updateList[28] = 0x10 + totalItemsCollected4;
 ;
-	.dbg	line, "scripts/gamePhase.h", 184
+	.dbg	line, "scripts/gamePhase.h", 191
 	lda     _totalItemsCollected4
+	clc
+	adc     #$10
+	sta     _updateList+28
+;
+; updateList[29] = 0x10 + totalItemsCollected3;
+;
+	.dbg	line, "scripts/gamePhase.h", 192
+	lda     _totalItemsCollected3
 	clc
 	adc     #$10
 	sta     _updateList+29
 ;
-; updateList[32] = 0x10 + totalItemsCollected3;
+; updateList[30] = 0x10 + totalItemsCollected2;
 ;
-	.dbg	line, "scripts/gamePhase.h", 185
-	lda     _totalItemsCollected3
-	clc
-	adc     #$10
-	sta     _updateList+32
-;
-; updateList[35] = 0x10 + totalItemsCollected2;
-;
-	.dbg	line, "scripts/gamePhase.h", 186
+	.dbg	line, "scripts/gamePhase.h", 193
 	lda     _totalItemsCollected2
 	clc
 	adc     #$10
-	sta     _updateList+35
+	sta     _updateList+30
 ;
-; updateList[38] = 0x10 + totalItemsCollected1;
+; updateList[31] = 0x10 + totalItemsCollected1;
 ;
-	.dbg	line, "scripts/gamePhase.h", 187
+	.dbg	line, "scripts/gamePhase.h", 194
 	lda     _totalItemsCollected1
 	clc
 	adc     #$10
-	sta     _updateList+38
+	sta     _updateList+31
 ;
-; updateList[41] = 0x10 + percentCollected/100;
+; updateList[35] = 0x10 + percentCollected/100;
 ;
-	.dbg	line, "scripts/gamePhase.h", 189
+	.dbg	line, "scripts/gamePhase.h", 196
 	lda     _percentCollected
 	jsr     pusha0
 	lda     #$64
 	jsr     tosudiva0
 	clc
 	adc     #$10
-	sta     _updateList+41
+	sta     _updateList+35
 ;
-; updateList[44] = 0x10 + percentCollected/10%10;
+; updateList[36] = 0x10 + percentCollected/10%10;
 ;
-	.dbg	line, "scripts/gamePhase.h", 190
+	.dbg	line, "scripts/gamePhase.h", 197
 	lda     _percentCollected
 	jsr     pusha0
 	lda     #$0A
@@ -2782,22 +3661,22 @@ L07DF:	rts
 	jsr     tosumoda0
 	clc
 	adc     #$10
-	sta     _updateList+44
+	sta     _updateList+36
 ;
-; updateList[47] = 0x10 + percentCollected%10;
+; updateList[37] = 0x10 + percentCollected%10;
 ;
-	.dbg	line, "scripts/gamePhase.h", 191
+	.dbg	line, "scripts/gamePhase.h", 198
 	lda     _percentCollected
 	jsr     pusha0
 	lda     #$0A
 	jsr     tosumoda0
 	clc
 	adc     #$10
-	sta     _updateList+47
+	sta     _updateList+37
 ;
 ; }
 ;
-	.dbg	line, "scripts/gamePhase.h", 192
+	.dbg	line, "scripts/gamePhase.h", 199
 	rts
 	.dbg	line
 
@@ -2819,83 +3698,83 @@ L07DF:	rts
 ;
 ; {
 ;
-	.dbg	line, "scripts/gamePhase.h", 197
+	.dbg	line, "scripts/gamePhase.h", 204
 	jsr     pusha
 ;
 ; px = player_x >> TILE_PLUS_FP_BITS;
 ;
-	.dbg	line, "scripts/gamePhase.h", 198
+	.dbg	line, "scripts/gamePhase.h", 205
 	lda     _player_x+1
 	sta     _px
 ;
 ; py = player_y >> TILE_PLUS_FP_BITS;
 ;
-	.dbg	line, "scripts/gamePhase.h", 199
+	.dbg	line, "scripts/gamePhase.h", 206
 	lda     _player_y+1
 	sta     _py
 ;
 ; if (px == 0 && dir == DIR_LEFT) return;
 ;
-	.dbg	line, "scripts/gamePhase.h", 203
+	.dbg	line, "scripts/gamePhase.h", 210
 	lda     _px
-	bne     L0B01
+	bne     L0F4E
 	tay
 	lda     (sp),y
 	cmp     #$40
-	beq     L080C
-	jmp     L0B01
+	beq     L0B71
+	jmp     L0F4E
 ;
 ; switch (dir)
 ;
-	.dbg	line, "scripts/gamePhase.h", 205
-L0B01:	ldx     #$00
+	.dbg	line, "scripts/gamePhase.h", 212
+L0F4E:	ldx     #$00
 	lda     (sp,x)
 ;
 ; }
 ;
-	.dbg	line, "scripts/gamePhase.h", 211
+	.dbg	line, "scripts/gamePhase.h", 218
 	cmp     #$10
-	beq     L0AFE
+	beq     L0F4B
 	cmp     #$20
-	beq     L0AFF
+	beq     L0F4C
 	cmp     #$40
-	beq     L0AFC
+	beq     L0F49
 	cmp     #$80
-	beq     L0AFD
-	jmp     L0B00
+	beq     L0F4A
+	jmp     L0F4D
 ;
 ; case DIR_LEFT: --px; break;
 ;
-	.dbg	line, "scripts/gamePhase.h", 207
-L0AFC:	dec     _px
-	jmp     L0B00
+	.dbg	line, "scripts/gamePhase.h", 214
+L0F49:	dec     _px
+	jmp     L0F4D
 ;
 ; case DIR_RIGHT: ++px; break;
 ;
-	.dbg	line, "scripts/gamePhase.h", 208
-L0AFD:	inc     _px
-	jmp     L0B00
+	.dbg	line, "scripts/gamePhase.h", 215
+L0F4A:	inc     _px
+	jmp     L0F4D
 ;
 ; case DIR_UP: --py; break;
 ;
-	.dbg	line, "scripts/gamePhase.h", 209
-L0AFE:	dec     _py
-	jmp     L0B00
+	.dbg	line, "scripts/gamePhase.h", 216
+L0F4B:	dec     _py
+	jmp     L0F4D
 ;
 ; case DIR_DOWN: ++py; break;
 ;
-	.dbg	line, "scripts/gamePhase.h", 210
-L0AFF:	inc     _py
+	.dbg	line, "scripts/gamePhase.h", 217
+L0F4C:	inc     _py
 ;
 ; if (map[MAP_ADR(px,py)] == TILE_WALL) return;
 ;
-	.dbg	line, "scripts/gamePhase.h", 213
-L0B00:	lda     _py
+	.dbg	line, "scripts/gamePhase.h", 220
+L0F4D:	lda     _py
 	sec
 	sbc     #$02
-	bcs     L082D
+	bcs     L0B92
 	dex
-L082D:	jsr     shlax4
+L0B92:	jsr     shlax4
 	sta     ptr1
 	stx     ptr1+1
 	lda     _px
@@ -2908,23 +3787,23 @@ L082D:	jsr     shlax4
 	ldy     #<(_map)
 	lda     (ptr1),y
 	cmp     #$40
-	beq     L080C
+	beq     L0B71
 ;
 ; player_nextTileX = px;
 ;
-	.dbg	line, "scripts/gamePhase.h", 215
+	.dbg	line, "scripts/gamePhase.h", 222
 	lda     _px
 	sta     _player_nextTileX
 ;
 ; player_nextTileY = py;
 ;
-	.dbg	line, "scripts/gamePhase.h", 216
+	.dbg	line, "scripts/gamePhase.h", 223
 	lda     _py
 	sta     _player_nextTileY
 ;
 ; player_moveCounter = TILE_SIZE << FP_BITS;
 ;
-	.dbg	line, "scripts/gamePhase.h", 218
+	.dbg	line, "scripts/gamePhase.h", 225
 	ldx     #$01
 	lda     #$00
 	sta     _player_moveCounter
@@ -2932,21 +3811,21 @@ L082D:	jsr     shlax4
 ;
 ; player_dir = dir;
 ;
-	.dbg	line, "scripts/gamePhase.h", 219
+	.dbg	line, "scripts/gamePhase.h", 226
 	tay
 	lda     (sp),y
 	sta     _player_dir
 ;
 ; player_nextDir = dir;
 ;
-	.dbg	line, "scripts/gamePhase.h", 220
+	.dbg	line, "scripts/gamePhase.h", 227
 	lda     (sp),y
 	sta     _player_nextDir
 ;
 ; }
 ;
-	.dbg	line, "scripts/gamePhase.h", 221
-L080C:	jmp     incsp1
+	.dbg	line, "scripts/gamePhase.h", 228
+L0B71:	jmp     incsp1
 	.dbg	line
 
 .endproc
@@ -2966,38 +3845,60 @@ L080C:	jmp     incsp1
 ;
 ; oam_clear();
 ;
-	.dbg	line, "scripts/gamePhase.h", 227
+	.dbg	line, "scripts/gamePhase.h", 234
 	jsr     _oam_clear
 ;
 ; vram_adr(NAMETABLE_A);
 ;
-	.dbg	line, "scripts/gamePhase.h", 230
+	.dbg	line, "scripts/gamePhase.h", 237
 	ldx     #$20
 	lda     #$00
 	jsr     _vram_adr
 ;
-; vram_unrle(gameLevel == 0 ? level_test2 : level_test);
+; switch (gameLevel)
 ;
-	.dbg	line, "scripts/gamePhase.h", 232
+	.dbg	line, "scripts/gamePhase.h", 239
 	lda     _gameLevel
-	bne     L083F
-	lda     #<(_level_test2)
-	ldx     #>(_level_test2)
-	jmp     L0841
-L083F:	lda     #<(_level_test)
+;
+; }
+;
+	.dbg	line, "scripts/gamePhase.h", 244
+	beq     L0BA6
+	cmp     #$01
+	beq     L0BAA
+	jmp     L0BAD
+;
+; case 0:  vram_unrle(level_test);  break;
+;
+	.dbg	line, "scripts/gamePhase.h", 241
+L0BA6:	lda     #<(_level_test)
 	ldx     #>(_level_test)
-L0841:	jsr     _vram_unrle
+	jmp     L0F4F
 ;
-; vram_adr(NAMETABLE_A + HUD_LABELS_POS);
+; case 1:  vram_unrle(level_test2); break;
 ;
-	.dbg	line, "scripts/gamePhase.h", 235
+	.dbg	line, "scripts/gamePhase.h", 242
+L0BAA:	lda     #<(_level_test2)
+	ldx     #>(_level_test2)
+	jmp     L0F4F
+;
+; default: vram_unrle(level_test3); break;
+;
+	.dbg	line, "scripts/gamePhase.h", 243
+L0BAD:	lda     #<(_level_test3)
+	ldx     #>(_level_test3)
+L0F4F:	jsr     _vram_unrle
+;
+; vram_adr(HUD_LABELS_ADR);
+;
+	.dbg	line, "scripts/gamePhase.h", 247
 	ldx     #$20
 	lda     #$44
 	jsr     _vram_adr
 ;
 ; vram_write((unsigned char*)hudLabels, HUD_LABELS_LEN);
 ;
-	.dbg	line, "scripts/gamePhase.h", 236
+	.dbg	line, "scripts/gamePhase.h", 248
 	lda     #<(_hudLabels)
 	ldx     #>(_hudLabels)
 	jsr     pushax
@@ -3007,21 +3908,21 @@ L0841:	jsr     _vram_unrle
 ;
 ; pal_bg(pal_level_test);
 ;
-	.dbg	line, "scripts/gamePhase.h", 239
+	.dbg	line, "scripts/gamePhase.h", 251
 	lda     #<(_pal_level_test)
 	ldx     #>(_pal_level_test)
 	jsr     _pal_bg
 ;
 ; pal_spr(palGameSpr);
 ;
-	.dbg	line, "scripts/gamePhase.h", 242
+	.dbg	line, "scripts/gamePhase.h", 254
 	lda     #<(_palGameSpr)
 	ldx     #>(_palGameSpr)
 	jsr     _pal_spr
 ;
-; i16 = NAMETABLE_A + MAP_START_ADR;
+; i16 = MAP_START_ADR;
 ;
-	.dbg	line, "scripts/gamePhase.h", 245
+	.dbg	line, "scripts/gamePhase.h", 257
 	ldx     #$20
 	lda     #$80
 	sta     _i16
@@ -3029,80 +3930,91 @@ L0841:	jsr     _vram_unrle
 ;
 ; ptr = 0;
 ;
-	.dbg	line, "scripts/gamePhase.h", 246
+	.dbg	line, "scripts/gamePhase.h", 258
 	lda     #$00
 	sta     _ptr
 ;
 ; wait = 0;
 ;
-	.dbg	line, "scripts/gamePhase.h", 247
+	.dbg	line, "scripts/gamePhase.h", 259
 	sta     _wait
 ;
 ; levelItemsCount = 0;
 ;
-	.dbg	line, "scripts/gamePhase.h", 248
+	.dbg	line, "scripts/gamePhase.h", 260
 	sta     _levelItemsCount
 ;
 ; levelItemsCollected = 0;
 ;
-	.dbg	line, "scripts/gamePhase.h", 249
+	.dbg	line, "scripts/gamePhase.h", 261
 	sta     _levelItemsCollected
 ;
 ; percentCollected = 0;
 ;
-	.dbg	line, "scripts/gamePhase.h", 250
+	.dbg	line, "scripts/gamePhase.h", 262
 	sta     _percentCollected
+;
+; enemy_tileX = 255;
+;
+	.dbg	line, "scripts/gamePhase.h", 264
+	lda     #$FF
+	sta     _enemy_tileX
+;
+; enemy_tileY = 255;
+;
+	.dbg	line, "scripts/gamePhase.h", 265
+	sta     _enemy_tileY
 ;
 ; if (gameLevel == 0)
 ;
-	.dbg	line, "scripts/gamePhase.h", 253
+	.dbg	line, "scripts/gamePhase.h", 268
 	lda     _gameLevel
-	bne     L0B03
+	bne     L0F51
 ;
 ; totalItemsCollected1 = 0;
 ;
-	.dbg	line, "scripts/gamePhase.h", 255
+	.dbg	line, "scripts/gamePhase.h", 270
 	sta     _totalItemsCollected1
 ;
 ; totalItemsCollected2 = 0;
 ;
-	.dbg	line, "scripts/gamePhase.h", 256
+	.dbg	line, "scripts/gamePhase.h", 271
 	sta     _totalItemsCollected2
 ;
 ; totalItemsCollected3 = 0;
 ;
-	.dbg	line, "scripts/gamePhase.h", 257
+	.dbg	line, "scripts/gamePhase.h", 272
 	sta     _totalItemsCollected3
 ;
 ; totalItemsCollected4 = 0;
 ;
-	.dbg	line, "scripts/gamePhase.h", 258
+	.dbg	line, "scripts/gamePhase.h", 273
 	sta     _totalItemsCollected4
 ;
 ; totalItemsCollected5 = 0;
 ;
-	.dbg	line, "scripts/gamePhase.h", 259
+	.dbg	line, "scripts/gamePhase.h", 274
 	sta     _totalItemsCollected5
 ;
-; for (i = 2; i < MAP_HEIGHT+2; ++i)
+; for (i = HUD_HEIGHT; i < MAP_HEIGHT+2; ++i)
 ;
-	.dbg	line, "scripts/gamePhase.h", 263
-L0B03:	lda     #$02
+	.dbg	line, "scripts/gamePhase.h", 278
+L0F51:	lda     #$02
 	sta     _i
-L0B04:	lda     _i
+L0F52:	lda     _i
 	cmp     #$0F
-	jcs     L0865
+	jcs     L0BE2
 ;
 ; vram_adr(i16);
 ;
-	.dbg	line, "scripts/gamePhase.h", 266
+	.dbg	line, "scripts/gamePhase.h", 281
 	lda     _i16
 	ldx     _i16+1
 	jsr     _vram_adr
 ;
 ; vram_read(nameRow, 32);
 ;
-	.dbg	line, "scripts/gamePhase.h", 267
+	.dbg	line, "scripts/gamePhase.h", 282
 	lda     #<(_nameRow)
 	ldx     #>(_nameRow)
 	jsr     pushax
@@ -3112,148 +4024,163 @@ L0B04:	lda     _i
 ;
 ; vram_adr(i16);
 ;
-	.dbg	line, "scripts/gamePhase.h", 269
+	.dbg	line, "scripts/gamePhase.h", 284
 	lda     _i16
 	ldx     _i16+1
 	jsr     _vram_adr
 ;
 ; for (j = 0; j < MAP_WIDTH<<1; j += 2)
 ;
-	.dbg	line, "scripts/gamePhase.h", 272
+	.dbg	line, "scripts/gamePhase.h", 287
 	lda     #$00
-L0B02:	sta     _j
+L0F50:	sta     _j
 	cmp     #$20
-	jcs     L0874
+	jcs     L0BF1
 ;
 ; spr = nameRow[j];
 ;
-	.dbg	line, "scripts/gamePhase.h", 274
+	.dbg	line, "scripts/gamePhase.h", 289
 	ldy     _j
 	lda     _nameRow,y
 	sta     _spr
 ;
-; switch (spr)
-;
-	.dbg	line, "scripts/gamePhase.h", 277
-	ldx     #$00
-	lda     _spr
-;
 ; }
 ;
-	.dbg	line, "scripts/gamePhase.h", 302
+	.dbg	line, "scripts/gamePhase.h", 327
+	cmp     #$10
+	beq     L0F55
 	cmp     #$25
-	beq     L0B06
+	beq     L0F54
 	cmp     #$33
-	beq     L0B05
+	beq     L0F53
 	cmp     #$45
-	beq     L0B07
-	jmp     L0B08
+	jeq     L0F56
+	jmp     L0F57
 ;
-; player_x = (j<<3)<<FP_BITS;
+; player_x = j << TILE_PLUS_FP_BITS >> 1;
 ;
-	.dbg	line, "scripts/gamePhase.h", 281
-L0B05:	lda     _j
-	jsr     aslax3
-	jsr     aslax4
+	.dbg	line, "scripts/gamePhase.h", 301
+L0F53:	ldx     _j
+	lda     #$00
+	jsr     asrax1
 	sta     _player_x
 	stx     _player_x+1
 ;
-; player_y = (i<<4)<<FP_BITS;
+; player_y = i << TILE_PLUS_FP_BITS;
 ;
-	.dbg	line, "scripts/gamePhase.h", 282
-	ldx     #$00
+	.dbg	line, "scripts/gamePhase.h", 302
 	lda     _i
-	jsr     aslax4
-	jsr     aslax4
+	sta     _player_y+1
+	lda     #$00
 	sta     _player_y
-	stx     _player_y+1
 ;
-; player_prevTileX = player_x;
+; player_prevTileX = j >> 1;
 ;
-	.dbg	line, "scripts/gamePhase.h", 283
-	lda     _player_x
+	.dbg	line, "scripts/gamePhase.h", 303
+	lda     _j
+	lsr     a
 	sta     _player_prevTileX
 ;
-; player_prevTileY = player_y;
+; player_prevTileY = i;
 ;
-	.dbg	line, "scripts/gamePhase.h", 284
-	lda     _player_y
+	.dbg	line, "scripts/gamePhase.h", 304
+	lda     _i
 	sta     _player_prevTileY
 ;
 ; player_dir = DIR_NONE;
 ;
-	.dbg	line, "scripts/gamePhase.h", 285
+	.dbg	line, "scripts/gamePhase.h", 305
 	lda     #$00
 	sta     _player_dir
 ;
 ; player_nextDir = DIR_NONE;
 ;
-	.dbg	line, "scripts/gamePhase.h", 286
+	.dbg	line, "scripts/gamePhase.h", 306
 	sta     _player_nextDir
 ;
 ; player_moveCounter = 0;
 ;
-	.dbg	line, "scripts/gamePhase.h", 287
-	tax
+	.dbg	line, "scripts/gamePhase.h", 307
 	sta     _player_moveCounter
 	sta     _player_moveCounter+1
 ;
-; player_speed = (START_SPEED + SPEED_UP_PER_LEVEL*gameLevel)<<FP_BITS;
+; player_speed = (START_SPEED + SPEED_UP_PER_LEVEL*gameLevel) << FP_BITS;
 ;
-	.dbg	line, "scripts/gamePhase.h", 289
+	.dbg	line, "scripts/gamePhase.h", 309
 	lda     _gameLevel
+	jsr     pusha0
+	lda     #$00
+	jsr     tosumula0
 	clc
 	adc     #$02
-	bcc     L0898
+	bcc     L0C15
 	inx
-L0898:	jsr     shlax4
+L0C15:	jsr     shlax4
 	sta     _player_speed
 	stx     _player_speed+1
 ;
 ; spr = TILE_EMPTY;
 ;
-	.dbg	line, "scripts/gamePhase.h", 291
+	.dbg	line, "scripts/gamePhase.h", 311
 	lda     #$44
 	sta     _spr
 ;
 ; break;
 ;
-	.dbg	line, "scripts/gamePhase.h", 292
-	jmp     L0B08
+	.dbg	line, "scripts/gamePhase.h", 312
+	jmp     L0F57
 ;
-; exit_x = (j<<3)<<FP_BITS;
+; exit_tileX = j >> 1;
 ;
-	.dbg	line, "scripts/gamePhase.h", 295
-L0B06:	lda     _j
-	jsr     aslax3
-	jsr     aslax4
-	sta     _exit_x
-	stx     _exit_x+1
+	.dbg	line, "scripts/gamePhase.h", 315
+L0F54:	lda     _j
+	lsr     a
+	sta     _exit_tileX
 ;
-; exit_y = (i<<4)<<FP_BITS;
+; exit_tileY = i;
 ;
-	.dbg	line, "scripts/gamePhase.h", 296
-	ldx     #$00
+	.dbg	line, "scripts/gamePhase.h", 316
 	lda     _i
-	jsr     aslax4
-	jsr     aslax4
-	sta     _exit_y
-	stx     _exit_y+1
+	sta     _exit_tileY
 ;
 ; break;
 ;
-	.dbg	line, "scripts/gamePhase.h", 297
-	jmp     L0B08
+	.dbg	line, "scripts/gamePhase.h", 317
+	jmp     L0F57
+;
+; enemy_tileX = j >> 1;
+;
+	.dbg	line, "scripts/gamePhase.h", 319
+L0F55:	lda     _j
+	lsr     a
+	sta     _enemy_tileX
+;
+; enemy_tileY = i;
+;
+	.dbg	line, "scripts/gamePhase.h", 320
+	lda     _i
+	sta     _enemy_tileY
+;
+; spr = TILE_EMPTY;
+;
+	.dbg	line, "scripts/gamePhase.h", 322
+	lda     #$44
+	sta     _spr
+;
+; break;
+;
+	.dbg	line, "scripts/gamePhase.h", 323
+	jmp     L0F57
 ;
 ; ++levelItemsCount;
 ;
-	.dbg	line, "scripts/gamePhase.h", 300
-L0B07:	inc     _levelItemsCount
+	.dbg	line, "scripts/gamePhase.h", 325
+L0F56:	inc     _levelItemsCount
 ;
 ; map[ptr++] = spr;
 ;
-	.dbg	line, "scripts/gamePhase.h", 305
-L0B08:	lda     _ptr
+	.dbg	line, "scripts/gamePhase.h", 330
+L0F57:	lda     _ptr
 	inc     _ptr
 	clc
 	adc     #<(_map)
@@ -3267,20 +4194,20 @@ L0B08:	lda     _ptr
 ;
 ; vram_put(spr);
 ;
-	.dbg	line, "scripts/gamePhase.h", 308
+	.dbg	line, "scripts/gamePhase.h", 333
 	lda     _spr
 	jsr     _vram_put
 ;
 ; vram_put(nameRow[j+1]);
 ;
-	.dbg	line, "scripts/gamePhase.h", 310
+	.dbg	line, "scripts/gamePhase.h", 335
 	ldx     #$00
 	lda     _j
 	clc
 	adc     #$01
-	bcc     L08AE
+	bcc     L0C31
 	inx
-L08AE:	sta     ptr1
+L0C31:	sta     ptr1
 	txa
 	clc
 	adc     #>(_nameRow)
@@ -3291,44 +4218,44 @@ L08AE:	sta     ptr1
 ;
 ; for (j = 0; j < MAP_WIDTH<<1; j += 2)
 ;
-	.dbg	line, "scripts/gamePhase.h", 272
+	.dbg	line, "scripts/gamePhase.h", 287
 	lda     #$02
 	clc
 	adc     _j
-	jmp     L0B02
+	jmp     L0F50
 ;
 ; i16 += 64; // 32 * 2, with 32 being offset for byte row, and 2 being tile height (2 bytes)
 ;
-	.dbg	line, "scripts/gamePhase.h", 314
-L0874:	lda     #$40
+	.dbg	line, "scripts/gamePhase.h", 339
+L0BF1:	lda     #$40
 	clc
 	adc     _i16
 	sta     _i16
-	bcc     L08B1
+	bcc     L0C34
 	inc     _i16+1
 ;
-; for (i = 2; i < MAP_HEIGHT+2; ++i)
+; for (i = HUD_HEIGHT; i < MAP_HEIGHT+2; ++i)
 ;
-	.dbg	line, "scripts/gamePhase.h", 263
-L08B1:	inc     _i
-	jmp     L0B04
+	.dbg	line, "scripts/gamePhase.h", 278
+L0C34:	inc     _i
+	jmp     L0F52
 ;
 ; memcpy(updateList, updateListData, sizeof(updateListData));
 ;
-	.dbg	line, "scripts/gamePhase.h", 318
-L0865:	lda     #<(_updateList)
+	.dbg	line, "scripts/gamePhase.h", 343
+L0BE2:	lda     #<(_updateList)
 	ldx     #>(_updateList)
 	jsr     pushax
 	lda     #<(_updateListData)
 	ldx     #>(_updateListData)
 	jsr     pushax
 	ldx     #$00
-	lda     #$31
+	lda     #$27
 	jsr     _memcpy
 ;
 ; set_vram_update(updateList);
 ;
-	.dbg	line, "scripts/gamePhase.h", 319
+	.dbg	line, "scripts/gamePhase.h", 344
 	lda     #<(_updateList)
 	ldx     #>(_updateList)
 	jmp     _set_vram_update
@@ -3351,52 +4278,52 @@ L0865:	lda     #<(_updateList)
 ;
 ; pal_bright(0);
 ;
-	.dbg	line, "scripts/gamePhase.h", 342
+	.dbg	line, "scripts/gamePhase.h", 350
 	lda     #$00
 	jsr     _pal_bright
 ;
 ; initGameMap();
 ;
-	.dbg	line, "scripts/gamePhase.h", 345
+	.dbg	line, "scripts/gamePhase.h", 353
 	jsr     _initGameMap
 ;
 ; wait = START_DELAY;
 ;
-	.dbg	line, "scripts/gamePhase.h", 348
-	lda     #$0A
+	.dbg	line, "scripts/gamePhase.h", 356
+	lda     #$0F
 	sta     _wait
 ;
 ; ppu_on_all();
 ;
-	.dbg	line, "scripts/gamePhase.h", 351
+	.dbg	line, "scripts/gamePhase.h", 359
 	jsr     _ppu_on_all
 ;
 ; if (gameLevel > 0)
 ;
-	.dbg	line, "scripts/gamePhase.h", 354
+	.dbg	line, "scripts/gamePhase.h", 362
 	lda     _gameLevel
-	beq     L0B11
+	beq     L0F5F
 ;
 ; updateHUD();
 ;
-	.dbg	line, "scripts/gamePhase.h", 356
+	.dbg	line, "scripts/gamePhase.h", 364
 	jsr     _updateHUD
 ;
 ; levelDone = FALSE;
 ;
-	.dbg	line, "scripts/gamePhase.h", 359
+	.dbg	line, "scripts/gamePhase.h", 367
 	lda     #$00
-L0B11:	sta     _levelDone
+L0F5F:	sta     _levelDone
 ;
 ; frameCounter = 0;
 ;
-	.dbg	line, "scripts/gamePhase.h", 360
+	.dbg	line, "scripts/gamePhase.h", 368
 	sta     _frameCounter
 ;
 ; oam_meta_spr(player_x >> FP_BITS,
 ;
-	.dbg	line, "scripts/gamePhase.h", 365
-L08C7:	jsr     decsp3
+	.dbg	line, "scripts/gamePhase.h", 373
+L0C4A:	jsr     decsp3
 	lda     _player_x
 	ldx     _player_x+1
 	jsr     shrax4
@@ -3405,7 +4332,7 @@ L08C7:	jsr     decsp3
 ;
 ; player_y >> FP_BITS,
 ;
-	.dbg	line, "scripts/gamePhase.h", 366
+	.dbg	line, "scripts/gamePhase.h", 374
 	lda     _player_y
 	ldx     _player_y+1
 	jsr     shrax4
@@ -3414,101 +4341,138 @@ L08C7:	jsr     decsp3
 ;
 ; 0,
 ;
-	.dbg	line, "scripts/gamePhase.h", 367
+	.dbg	line, "scripts/gamePhase.h", 375
 	lda     #$00
 	dey
 	sta     (sp),y
 ;
 ; playerMetasprite);
 ;
-	.dbg	line, "scripts/gamePhase.h", 368
+	.dbg	line, "scripts/gamePhase.h", 376
 	lda     #<(_playerMetasprite)
 	ldx     #>(_playerMetasprite)
 	jsr     _oam_meta_spr
 ;
+; oam_meta_spr(enemy_tileX << TILE_SIZE_BIT,
+;
+	.dbg	line, "scripts/gamePhase.h", 377
+	jsr     decsp3
+	lda     _enemy_tileX
+	asl     a
+	asl     a
+	asl     a
+	asl     a
+	ldy     #$02
+	sta     (sp),y
+;
+; enemy_tileY << TILE_SIZE_BIT,
+;
+	.dbg	line, "scripts/gamePhase.h", 378
+	lda     _enemy_tileY
+	asl     a
+	asl     a
+	asl     a
+	asl     a
+	dey
+	sta     (sp),y
+;
+; 16,
+;
+	.dbg	line, "scripts/gamePhase.h", 379
+	lda     #$10
+	dey
+	sta     (sp),y
+;
+; enemyMetasprite);
+;
+	.dbg	line, "scripts/gamePhase.h", 380
+	lda     #<(_enemyMetasprite)
+	ldx     #>(_enemyMetasprite)
+	jsr     _oam_meta_spr
+;
 ; if (levelDone) break;
 ;
-	.dbg	line, "scripts/gamePhase.h", 371
+	.dbg	line, "scripts/gamePhase.h", 383
 	lda     _levelDone
-	jne     L08C8
+	jne     L0C4B
 ;
 ; ppu_wait_frame();
 ;
-	.dbg	line, "scripts/gamePhase.h", 375
+	.dbg	line, "scripts/gamePhase.h", 387
 	jsr     _ppu_wait_frame
 ;
 ; ++frameCounter;
 ;
-	.dbg	line, "scripts/gamePhase.h", 377
+	.dbg	line, "scripts/gamePhase.h", 389
 	inc     _frameCounter
 ;
 ; if (!(frameCounter&3))
 ;
-	.dbg	line, "scripts/gamePhase.h", 380
+	.dbg	line, "scripts/gamePhase.h", 392
 	lda     _frameCounter
 	and     #$03
-	bne     L08D4
+	bne     L0C5C
 ;
 ; if (!gamePaused && bright < 4) ++bright;
 ;
-	.dbg	line, "scripts/gamePhase.h", 382
+	.dbg	line, "scripts/gamePhase.h", 394
 	lda     _gamePaused
-	bne     L08D7
+	bne     L0C5F
 	lda     _bright
 	cmp     #$04
-	bcs     L08D7
+	bcs     L0C5F
 	inc     _bright
 ;
 ; if ( gamePaused && bright > 2) --bright;
 ;
-	.dbg	line, "scripts/gamePhase.h", 383
-L08D7:	lda     _gamePaused
-	beq     L08DC
+	.dbg	line, "scripts/gamePhase.h", 395
+L0C5F:	lda     _gamePaused
+	beq     L0C64
 	lda     _bright
 	cmp     #$03
-	bcc     L08DC
+	bcc     L0C64
 	dec     _bright
 ;
 ; pal_bright(bright);
 ;
-	.dbg	line, "scripts/gamePhase.h", 384
-L08DC:	lda     _bright
+	.dbg	line, "scripts/gamePhase.h", 396
+L0C64:	lda     _bright
 	jsr     _pal_bright
 ;
 ; input = pad_trigger(0);
 ;
-	.dbg	line, "scripts/gamePhase.h", 388
-L08D4:	lda     #$00
+	.dbg	line, "scripts/gamePhase.h", 400
+L0C5C:	lda     #$00
 	jsr     _pad_trigger
 	sta     _input
 ;
 ; if (input&PAD_START)
 ;
-	.dbg	line, "scripts/gamePhase.h", 391
+	.dbg	line, "scripts/gamePhase.h", 403
 	and     #$08
-	beq     L08E6
+	beq     L0C6E
 ;
 ; gamePaused ^= TRUE;
 ;
-	.dbg	line, "scripts/gamePhase.h", 393
+	.dbg	line, "scripts/gamePhase.h", 405
 	lda     _gamePaused
 	eor     #$01
 	sta     _gamePaused
 ;
 ; music_pause(gamePaused);
 ;
-	.dbg	line, "scripts/gamePhase.h", 394
+	.dbg	line, "scripts/gamePhase.h", 406
 	jsr     _music_pause
 ;
 ; if (gamePaused) continue;
 ;
-	.dbg	line, "scripts/gamePhase.h", 398
-L08E6:	lda     _gamePaused
-	bne     L08C7
+	.dbg	line, "scripts/gamePhase.h", 410
+L0C6E:	lda     _gamePaused
+	jne     L0C4A
 ;
 ; bank_bg((frameCounter >> 4)&1);
 ;
-	.dbg	line, "scripts/gamePhase.h", 401
+	.dbg	line, "scripts/gamePhase.h", 413
 	lda     _frameCounter
 	lsr     a
 	lsr     a
@@ -3519,7 +4483,7 @@ L08E6:	lda     _gamePaused
 ;
 ; bank_spr((frameCounter >> 3)&1); // Faster switching for sprites
 ;
-	.dbg	line, "scripts/gamePhase.h", 402
+	.dbg	line, "scripts/gamePhase.h", 414
 	lda     _frameCounter
 	lsr     a
 	lsr     a
@@ -3529,53 +4493,61 @@ L08E6:	lda     _gamePaused
 ;
 ; if (wait)
 ;
-	.dbg	line, "scripts/gamePhase.h", 404
+	.dbg	line, "scripts/gamePhase.h", 416
 	lda     _wait
-	beq     L08F7
+	beq     L0C7F
 ;
 ; --wait;
 ;
-	.dbg	line, "scripts/gamePhase.h", 406
+	.dbg	line, "scripts/gamePhase.h", 418
 	dec     _wait
 ;
 ; if (!wait)
 ;
-	.dbg	line, "scripts/gamePhase.h", 407
-	bne     L08F7
+	.dbg	line, "scripts/gamePhase.h", 419
+	bne     L0C7F
+;
+; sfx_play(SFX_RESPAWN1, 1);
+;
+	.dbg	line, "scripts/gamePhase.h", 422
+	lda     #$02
+	jsr     pusha
+	lda     #$01
+	jsr     _sfx_play
 ;
 ; music_play(MUSIC_GAME);
 ;
-	.dbg	line, "scripts/gamePhase.h", 410
+	.dbg	line, "scripts/gamePhase.h", 424
 	lda     #$01
 	jsr     _music_play
 ;
 ; if (player_moveCounter != 0)
 ;
-	.dbg	line, "scripts/gamePhase.h", 415
-L08F7:	lda     _player_moveCounter
+	.dbg	line, "scripts/gamePhase.h", 429
+L0C7F:	lda     _player_moveCounter
 	ora     _player_moveCounter+1
-	jeq     L0B1D
+	jeq     L0F6D
 ;
 ; switch (player_dir)
 ;
-	.dbg	line, "scripts/gamePhase.h", 418
+	.dbg	line, "scripts/gamePhase.h", 432
 	lda     _player_dir
 ;
 ; }
 ;
-	.dbg	line, "scripts/gamePhase.h", 424
+	.dbg	line, "scripts/gamePhase.h", 438
 	cmp     #$10
-	beq     L090E
+	beq     L0C99
 	cmp     #$20
-	beq     L090A
+	beq     L0C95
 	cmp     #$40
-	beq     L0906
+	beq     L0C91
 	cmp     #$80
-	bne     L0900
+	bne     L0C8B
 ;
 ; case DIR_RIGHT: player_x += player_speed; break;
 ;
-	.dbg	line, "scripts/gamePhase.h", 420
+	.dbg	line, "scripts/gamePhase.h", 434
 	lda     _player_speed
 	clc
 	adc     _player_x
@@ -3583,12 +4555,12 @@ L08F7:	lda     _player_moveCounter
 	lda     _player_speed+1
 	adc     _player_x+1
 	sta     _player_x+1
-	jmp     L0900
+	jmp     L0C8B
 ;
 ; case DIR_LEFT: player_x -= player_speed; break;
 ;
-	.dbg	line, "scripts/gamePhase.h", 421
-L0906:	lda     _player_speed
+	.dbg	line, "scripts/gamePhase.h", 435
+L0C91:	lda     _player_speed
 	eor     #$FF
 	sec
 	adc     _player_x
@@ -3597,35 +4569,35 @@ L0906:	lda     _player_speed
 	eor     #$FF
 	adc     _player_x+1
 	sta     _player_x+1
-	jmp     L0900
+	jmp     L0C8B
 ;
 ; case DIR_DOWN: player_y += player_speed; break;
 ;
-	.dbg	line, "scripts/gamePhase.h", 422
-L090A:	lda     _player_speed
+	.dbg	line, "scripts/gamePhase.h", 436
+L0C95:	lda     _player_speed
 	clc
 	adc     _player_y
 	sta     _player_y
 	lda     _player_speed+1
-	jmp     L0B26
+	jmp     L0F78
 ;
 ; case DIR_UP: player_y -= player_speed; break;
 ;
-	.dbg	line, "scripts/gamePhase.h", 423
-L090E:	lda     _player_speed
+	.dbg	line, "scripts/gamePhase.h", 437
+L0C99:	lda     _player_speed
 	eor     #$FF
 	sec
 	adc     _player_y
 	sta     _player_y
 	lda     _player_speed+1
 	eor     #$FF
-L0B26:	adc     _player_y+1
+L0F78:	adc     _player_y+1
 	sta     _player_y+1
 ;
 ; player_moveCounter -= player_speed;
 ;
-	.dbg	line, "scripts/gamePhase.h", 426
-L0900:	lda     _player_speed
+	.dbg	line, "scripts/gamePhase.h", 440
+L0C8B:	lda     _player_speed
 	eor     #$FF
 	sec
 	adc     _player_moveCounter
@@ -3637,26 +4609,25 @@ L0900:	lda     _player_speed
 ;
 ; if (player_moveCounter <= 0)
 ;
-	.dbg	line, "scripts/gamePhase.h", 429
+	.dbg	line, "scripts/gamePhase.h", 443
 	lda     _player_moveCounter
 	cmp     #$01
 	lda     _player_moveCounter+1
 	sbc     #$00
-	bvc     L0915
+	bvc     L0CA0
 	eor     #$80
-L0915:	asl     a
-	lda     #$00
-	jcc     L0B1D
+L0CA0:	jpl     L0F6B
 ;
 ; player_moveCounter = 0;
 ;
-	.dbg	line, "scripts/gamePhase.h", 431
+	.dbg	line, "scripts/gamePhase.h", 445
+	lda     #$00
 	sta     _player_moveCounter
 	sta     _player_moveCounter+1
 ;
 ; player_x = player_nextTileX << TILE_PLUS_FP_BITS;
 ;
-	.dbg	line, "scripts/gamePhase.h", 441
+	.dbg	line, "scripts/gamePhase.h", 455
 	lda     _player_nextTileX
 	sta     _player_x+1
 	lda     #$00
@@ -3664,49 +4635,55 @@ L0915:	asl     a
 ;
 ; player_y = player_nextTileY << TILE_PLUS_FP_BITS;
 ;
-	.dbg	line, "scripts/gamePhase.h", 442
+	.dbg	line, "scripts/gamePhase.h", 456
 	lda     _player_nextTileY
 	sta     _player_y+1
 	lda     #$00
 	sta     _player_y
 ;
-; if (player_x == exit_x && player_y == exit_y)
+; if (player_x == exit_tileX << TILE_PLUS_FP_BITS &&
 ;
-	.dbg	line, "scripts/gamePhase.h", 445
-	lda     _exit_x
-	ldx     _exit_x+1
-	cpx     _player_x+1
-	bne     L0B25
-	cmp     _player_x
-	bne     L0B25
-	lda     _exit_y
-	ldx     _exit_y+1
-	cpx     _player_y+1
-	bne     L0B25
-	cmp     _player_y
-	bne     L0B25
+	.dbg	line, "scripts/gamePhase.h", 459
+	lda     _player_x
+	ldx     _player_x+1
+	jsr     pushax
+	ldx     _exit_tileX
+	lda     #$00
+	jsr     tosicmp
+	bne     L0F75
+;
+; player_y == exit_tileY << TILE_PLUS_FP_BITS)
+;
+	.dbg	line, "scripts/gamePhase.h", 460
+	lda     _player_y
+	ldx     _player_y+1
+	jsr     pushax
+	ldx     _exit_tileY
+	lda     #$00
+	jsr     tosicmp
+	bne     L0F75
 ;
 ; gameClear = TRUE;
 ;
-	.dbg	line, "scripts/gamePhase.h", 447
+	.dbg	line, "scripts/gamePhase.h", 462
 	lda     #$01
 	sta     _gameClear
 ;
 ; levelDone = TRUE;
 ;
-	.dbg	line, "scripts/gamePhase.h", 448
+	.dbg	line, "scripts/gamePhase.h", 463
 	sta     _levelDone
 ;
 ; i16 = MAP_ADR(player_nextTileX, player_nextTileY);
 ;
-	.dbg	line, "scripts/gamePhase.h", 451
-L0B25:	ldx     #$00
+	.dbg	line, "scripts/gamePhase.h", 466
+L0F75:	ldx     #$00
 	lda     _player_nextTileY
 	sec
 	sbc     #$02
-	bcs     L092C
+	bcs     L0CB9
 	dex
-L092C:	jsr     shlax4
+L0CB9:	jsr     shlax4
 	sta     ptr1
 	stx     ptr1+1
 	lda     _player_nextTileX
@@ -3717,7 +4694,7 @@ L092C:	jsr     shlax4
 ;
 ; switch (map[i16])
 ;
-	.dbg	line, "scripts/gamePhase.h", 452
+	.dbg	line, "scripts/gamePhase.h", 467
 	lda     #<(_map)
 	sta     ptr1
 	lda     #>(_map)
@@ -3730,32 +4707,32 @@ L092C:	jsr     shlax4
 ;
 ; }
 ;
-	.dbg	line, "scripts/gamePhase.h", 499
-	beq     L0B19
+	.dbg	line, "scripts/gamePhase.h", 518
+	beq     L0F67
 	cmp     #$45
-	beq     L0939
-	jmp     L0B1A
+	beq     L0CC6
+	jmp     L0F68
 ;
 ; gameClear = FALSE;
 ;
-	.dbg	line, "scripts/gamePhase.h", 456
-L0B19:	sta     _gameClear
+	.dbg	line, "scripts/gamePhase.h", 471
+L0F67:	sta     _gameClear
 ;
 ; levelDone = TRUE;
 ;
-	.dbg	line, "scripts/gamePhase.h", 457
+	.dbg	line, "scripts/gamePhase.h", 472
 	lda     #$01
 	sta     _levelDone
 ;
 ; break;
 ;
-	.dbg	line, "scripts/gamePhase.h", 458
-	jmp     L0B1A
+	.dbg	line, "scripts/gamePhase.h", 473
+	jmp     L0F68
 ;
 ; map[i16] = TILE_EMPTY;
 ;
-	.dbg	line, "scripts/gamePhase.h", 463
-L0939:	lda     #<(_map)
+	.dbg	line, "scripts/gamePhase.h", 478
+L0CC6:	lda     #<(_map)
 	clc
 	adc     _i16
 	sta     ptr1
@@ -3766,22 +4743,21 @@ L0939:	lda     #<(_map)
 	ldy     #$00
 	sta     (ptr1),y
 ;
-; sfx_play(SFX_ITEM, 2);
+; sfx_play(SFX_ITEM, 1);
 ;
-	.dbg	line, "scripts/gamePhase.h", 466
+	.dbg	line, "scripts/gamePhase.h", 480
 	lda     #$01
 	jsr     pusha
-	lda     #$02
 	jsr     _sfx_play
 ;
 ; ++levelItemsCollected;
 ;
-	.dbg	line, "scripts/gamePhase.h", 468
+	.dbg	line, "scripts/gamePhase.h", 482
 	inc     _levelItemsCollected
 ;
 ; percentCollected = levelItemsCollected*100/levelItemsCount;
 ;
-	.dbg	line, "scripts/gamePhase.h", 471
+	.dbg	line, "scripts/gamePhase.h", 485
 	lda     _levelItemsCollected
 	jsr     pusha0
 	lda     #$64
@@ -3791,21 +4767,38 @@ L0939:	lda     #<(_map)
 	jsr     tosudiva0
 	sta     _percentCollected
 ;
+; if (percentCollected >= CLEAR_PERC_REQT)
+;
+	.dbg	line, "scripts/gamePhase.h", 488
+	cmp     #$32
+	bcc     L0CD0
+;
+; enemy_tileX = 255; // Lower right screen corner
+;
+	.dbg	line, "scripts/gamePhase.h", 490
+	lda     #$FF
+	sta     _enemy_tileX
+;
+; enemy_tileY = 255;
+;
+	.dbg	line, "scripts/gamePhase.h", 491
+	sta     _enemy_tileY
+;
 ; incrementTotalItemsCollected();
 ;
-	.dbg	line, "scripts/gamePhase.h", 474
-	jsr     _incrementTotalItemsCollected
+	.dbg	line, "scripts/gamePhase.h", 495
+L0CD0:	jsr     _incrementTotalItemsCollected
 ;
-; ((player_nextTileY - 2) << 6) | (player_nextTileX << 1);
+; i16 = NAM_ADR(player_nextTileX, player_nextTileY);
 ;
-	.dbg	line, "scripts/gamePhase.h", 479
+	.dbg	line, "scripts/gamePhase.h", 498
 	ldx     #$00
 	lda     _player_nextTileY
 	sec
 	sbc     #$02
-	bcs     L0948
+	bcs     L0CE3
 	dex
-L0948:	jsr     shlax4
+L0CE3:	jsr     shlax4
 	jsr     shlax2
 	clc
 	adc     #$80
@@ -3816,9 +4809,9 @@ L0948:	jsr     shlax4
 	ldx     #$00
 	lda     _player_nextTileX
 	asl     a
-	bcc     L0B09
+	bcc     L0F58
 	inx
-L0B09:	ora     ptr1
+L0F58:	ora     ptr1
 	sta     _i16
 	txa
 	ora     ptr1+1
@@ -3826,24 +4819,24 @@ L0B09:	ora     ptr1
 ;
 ; updateList[0] = i16 >> 8;  // MSB
 ;
-	.dbg	line, "scripts/gamePhase.h", 483
+	.dbg	line, "scripts/gamePhase.h", 502
 	sta     _updateList
 ;
 ; updateList[1] = i16 & 0xff;  // LSB
 ;
-	.dbg	line, "scripts/gamePhase.h", 484
+	.dbg	line, "scripts/gamePhase.h", 503
 	lda     _i16
 	sta     _updateList+1
 ;
 ; updateList[3] = updateList[0];
 ;
-	.dbg	line, "scripts/gamePhase.h", 486
+	.dbg	line, "scripts/gamePhase.h", 505
 	lda     _updateList
 	sta     _updateList+3
 ;
 ; updateList[4] = updateList[1] + 1; // Element next to upper left
 ;
-	.dbg	line, "scripts/gamePhase.h", 487
+	.dbg	line, "scripts/gamePhase.h", 506
 	lda     _updateList+1
 	clc
 	adc     #$01
@@ -3851,35 +4844,35 @@ L0B09:	ora     ptr1
 ;
 ; i16 += 32;
 ;
-	.dbg	line, "scripts/gamePhase.h", 488
+	.dbg	line, "scripts/gamePhase.h", 507
 	lda     #$20
 	clc
 	adc     _i16
 	sta     _i16
-	bcc     L095B
+	bcc     L0CF7
 	inc     _i16+1
 ;
 ; updateList[6] = i16 >> 8;
 ;
-	.dbg	line, "scripts/gamePhase.h", 490
-L095B:	lda     _i16+1
+	.dbg	line, "scripts/gamePhase.h", 509
+L0CF7:	lda     _i16+1
 	sta     _updateList+6
 ;
 ; updateList[7] = i16 & 0xff;
 ;
-	.dbg	line, "scripts/gamePhase.h", 491
+	.dbg	line, "scripts/gamePhase.h", 510
 	lda     _i16
 	sta     _updateList+7
 ;
 ; updateList[9] = updateList[6];
 ;
-	.dbg	line, "scripts/gamePhase.h", 493
+	.dbg	line, "scripts/gamePhase.h", 512
 	lda     _updateList+6
 	sta     _updateList+9
 ;
 ; updateList[10] = updateList[7] + 1; // Element next to lower left
 ;
-	.dbg	line, "scripts/gamePhase.h", 494
+	.dbg	line, "scripts/gamePhase.h", 513
 	lda     _updateList+7
 	clc
 	adc     #$01
@@ -3887,19 +4880,19 @@ L095B:	lda     _i16+1
 ;
 ; updateHUD();
 ;
-	.dbg	line, "scripts/gamePhase.h", 497
+	.dbg	line, "scripts/gamePhase.h", 516
 	jsr     _updateHUD
 ;
 ; i16 = MAP_ADR(player_prevTileX, player_prevTileY);
 ;
-	.dbg	line, "scripts/gamePhase.h", 502
+	.dbg	line, "scripts/gamePhase.h", 521
 	ldx     #$00
-L0B1A:	lda     _player_prevTileY
+L0F68:	lda     _player_prevTileY
 	sec
 	sbc     #$02
-	bcs     L0972
+	bcs     L0D0E
 	dex
-L0972:	jsr     shlax4
+L0D0E:	jsr     shlax4
 	sta     ptr1
 	stx     ptr1+1
 	lda     _player_prevTileX
@@ -3910,7 +4903,7 @@ L0972:	jsr     shlax4
 ;
 ; map[i16] = TILE_HOLE;
 ;
-	.dbg	line, "scripts/gamePhase.h", 503
+	.dbg	line, "scripts/gamePhase.h", 522
 	lda     #<(_map)
 	clc
 	adc     _i16
@@ -3922,16 +4915,16 @@ L0972:	jsr     shlax4
 	tay
 	sta     (ptr1),y
 ;
-; ((player_prevTileY - 2) << 6) | (player_prevTileX << 1);
+; i16 = NAM_ADR(player_prevTileX, player_prevTileY);
 ;
-	.dbg	line, "scripts/gamePhase.h", 507
+	.dbg	line, "scripts/gamePhase.h", 525
 	tax
 	lda     _player_prevTileY
 	sec
 	sbc     #$02
-	bcs     L097B
+	bcs     L0D1F
 	dex
-L097B:	jsr     shlax4
+L0D1F:	jsr     shlax4
 	jsr     shlax2
 	clc
 	adc     #$80
@@ -3942,9 +4935,9 @@ L097B:	jsr     shlax4
 	ldx     #$00
 	lda     _player_prevTileX
 	asl     a
-	bcc     L0B0A
+	bcc     L0F59
 	inx
-L0B0A:	ora     ptr1
+L0F59:	ora     ptr1
 	sta     _i16
 	txa
 	ora     ptr1+1
@@ -3952,24 +4945,24 @@ L0B0A:	ora     ptr1
 ;
 ; updateList[12] = i16 >> 8;    // MSB
 ;
-	.dbg	line, "scripts/gamePhase.h", 510
+	.dbg	line, "scripts/gamePhase.h", 528
 	sta     _updateList+12
 ;
 ; updateList[13] = i16 & 0xff;   // LSB
 ;
-	.dbg	line, "scripts/gamePhase.h", 511
+	.dbg	line, "scripts/gamePhase.h", 529
 	lda     _i16
 	sta     _updateList+13
 ;
 ; updateList[15] = updateList[12];
 ;
-	.dbg	line, "scripts/gamePhase.h", 513
+	.dbg	line, "scripts/gamePhase.h", 531
 	lda     _updateList+12
 	sta     _updateList+15
 ;
 ; updateList[16] = updateList[13] + 1; // Element next to upper left
 ;
-	.dbg	line, "scripts/gamePhase.h", 514
+	.dbg	line, "scripts/gamePhase.h", 532
 	lda     _updateList+13
 	clc
 	adc     #$01
@@ -3977,35 +4970,35 @@ L0B0A:	ora     ptr1
 ;
 ; i16 += 32;
 ;
-	.dbg	line, "scripts/gamePhase.h", 515
+	.dbg	line, "scripts/gamePhase.h", 533
 	lda     #$20
 	clc
 	adc     _i16
 	sta     _i16
-	bcc     L098E
+	bcc     L0D33
 	inc     _i16+1
 ;
 ; updateList[18] = i16 >> 8;
 ;
-	.dbg	line, "scripts/gamePhase.h", 517
-L098E:	lda     _i16+1
+	.dbg	line, "scripts/gamePhase.h", 535
+L0D33:	lda     _i16+1
 	sta     _updateList+18
 ;
 ; updateList[19] = i16 & 0xff;
 ;
-	.dbg	line, "scripts/gamePhase.h", 518
+	.dbg	line, "scripts/gamePhase.h", 536
 	lda     _i16
 	sta     _updateList+19
 ;
 ; updateList[21] = updateList[18];
 ;
-	.dbg	line, "scripts/gamePhase.h", 520
+	.dbg	line, "scripts/gamePhase.h", 538
 	lda     _updateList+18
 	sta     _updateList+21
 ;
 ; updateList[22] = updateList[19] + 1; // Element next to lower left
 ;
-	.dbg	line, "scripts/gamePhase.h", 521
+	.dbg	line, "scripts/gamePhase.h", 539
 	lda     _updateList+19
 	clc
 	adc     #$01
@@ -4013,29 +5006,29 @@ L098E:	lda     _i16+1
 ;
 ; player_prevTileX = player_nextTileX;
 ;
-	.dbg	line, "scripts/gamePhase.h", 524
+	.dbg	line, "scripts/gamePhase.h", 542
 	lda     _player_nextTileX
 	sta     _player_prevTileX
 ;
 ; player_prevTileY = player_nextTileY;
 ;
-	.dbg	line, "scripts/gamePhase.h", 525
+	.dbg	line, "scripts/gamePhase.h", 543
 	lda     _player_nextTileY
 	sta     _player_prevTileY
 ;
 ; if (updateList[12] == updateList[0] && updateList[13] == updateList[1])
 ;
-	.dbg	line, "scripts/gamePhase.h", 529
+	.dbg	line, "scripts/gamePhase.h", 547
 	lda     _updateList
 	cmp     _updateList+12
-	bne     L09A2
+	bne     L0D47
 	lda     _updateList+1
 	cmp     _updateList+13
-	bne     L09A2
+	bne     L0D47
 ;
 ; updateList[0] = updateList[3] = updateList[6] = updateList[9] = 0x28;
 ;
-	.dbg	line, "scripts/gamePhase.h", 531
+	.dbg	line, "scripts/gamePhase.h", 549
 	lda     #$28
 	sta     _updateList+9
 	sta     _updateList+6
@@ -4044,7 +5037,7 @@ L098E:	lda     _i16+1
 ;
 ; updateList[1] = updateList[4] = updateList[7] = updateList[10] = 0x00;
 ;
-	.dbg	line, "scripts/gamePhase.h", 532
+	.dbg	line, "scripts/gamePhase.h", 550
 	tya
 	sta     _updateList+10
 	sta     _updateList+7
@@ -4053,149 +5046,264 @@ L098E:	lda     _i16+1
 ;
 ; checkPlayerMove(player_nextDir);
 ;
-	.dbg	line, "scripts/gamePhase.h", 536
-L09A2:	lda     _player_nextDir
+	.dbg	line, "scripts/gamePhase.h", 554
+L0D47:	lda     _player_nextDir
 	jsr     _checkPlayerMove
+;
+; if (percentCollected < CLEAR_PERC_REQT && 
+;
+	.dbg	line, "scripts/gamePhase.h", 558
+L0F6B:	lda     _percentCollected
+	cmp     #$32
+	jcs     L0F76
+;
+; !(((player_x>>TILE_SIZE_BIT)+4)>=((enemy_tileX<<TILE_SIZE_BIT)+12) ||
+;
+	.dbg	line, "scripts/gamePhase.h", 559
+	lda     _player_x
+	ldx     _player_x+1
+	jsr     shrax4
+	clc
+	adc     #$04
+	bcc     L0D69
+	inx
+L0D69:	jsr     pushax
+	ldx     #$00
+	lda     _enemy_tileX
+	jsr     aslax4
+	clc
+	adc     #$0C
+	bcc     L0D6C
+	inx
+L0D6C:	jsr     tosicmp
+	bcs     L0D66
+;
+; ((player_x>>TILE_SIZE_BIT)+12)<((enemy_tileX<<TILE_SIZE_BIT)+4) ||
+;
+	.dbg	line, "scripts/gamePhase.h", 560
+	lda     _player_x
+	ldx     _player_x+1
+	jsr     shrax4
+	clc
+	adc     #$0C
+	bcc     L0D6F
+	inx
+L0D6F:	jsr     pushax
+	ldx     #$00
+	lda     _enemy_tileX
+	jsr     aslax4
+	clc
+	adc     #$04
+	bcc     L0D72
+	inx
+L0D72:	jsr     tosicmp
+	bcc     L0D66
+;
+; ((player_y>>TILE_SIZE_BIT)+4)>=((enemy_tileY<<TILE_SIZE_BIT)+12) ||
+;
+	.dbg	line, "scripts/gamePhase.h", 561
+	lda     _player_y
+	ldx     _player_y+1
+	jsr     shrax4
+	clc
+	adc     #$04
+	bcc     L0D75
+	inx
+L0D75:	jsr     pushax
+	ldx     #$00
+	lda     _enemy_tileY
+	jsr     aslax4
+	clc
+	adc     #$0C
+	bcc     L0D78
+	inx
+L0D78:	jsr     tosicmp
+	bcs     L0D66
+;
+; ((player_y>>TILE_SIZE_BIT)+12)<((enemy_tileY<<TILE_SIZE_BIT)+4)))
+;
+	.dbg	line, "scripts/gamePhase.h", 562
+	lda     _player_y
+	ldx     _player_y+1
+	jsr     shrax4
+	clc
+	adc     #$0C
+	bcc     L0D7B
+	inx
+L0D7B:	jsr     pushax
+	ldx     #$00
+	lda     _enemy_tileY
+	jsr     aslax4
+	clc
+	adc     #$04
+	bcc     L0D7E
+	inx
+L0D7E:	jsr     tosicmp
+	bcc     L0D66
+	lda     #$00
+	jmp     L0D7F
+L0D66:	lda     #$01
+L0D7F:	jsr     bnega
+	beq     L0F76
+;
+; gameClear = FALSE;
+;
+	.dbg	line, "scripts/gamePhase.h", 564
+	lda     #$00
+	sta     _gameClear
+;
+; levelDone = TRUE;
+;
+	.dbg	line, "scripts/gamePhase.h", 565
+	lda     #$01
+	sta     _levelDone
 ;
 ; j = pad_state(0);
 ;
-	.dbg	line, "scripts/gamePhase.h", 541
-	lda     #$00
-L0B1D:	jsr     _pad_state
+	.dbg	line, "scripts/gamePhase.h", 570
+L0F76:	lda     #$00
+L0F6D:	jsr     _pad_state
 	sta     _j
 ;
 ; if (player_moveCounter == 0)
 ;
-	.dbg	line, "scripts/gamePhase.h", 544
+	.dbg	line, "scripts/gamePhase.h", 573
 	lda     _player_moveCounter
 	ora     _player_moveCounter+1
-	bne     L09C1
+	bne     L0D88
 ;
 ; if (j&PAD_LEFT)  checkPlayerMove(DIR_LEFT);
 ;
-	.dbg	line, "scripts/gamePhase.h", 546
+	.dbg	line, "scripts/gamePhase.h", 575
 	lda     _j
 	and     #$40
-	beq     L0B1E
+	beq     L0F6E
 	lda     #$40
 	jsr     _checkPlayerMove
 ;
 ; if (j&PAD_RIGHT) checkPlayerMove(DIR_RIGHT);
 ;
-	.dbg	line, "scripts/gamePhase.h", 547
-L0B1E:	lda     _j
+	.dbg	line, "scripts/gamePhase.h", 576
+L0F6E:	lda     _j
 	and     #$80
-	beq     L0B1F
+	beq     L0F6F
 	lda     #$80
 	jsr     _checkPlayerMove
 ;
 ; if (j&PAD_UP)  checkPlayerMove(DIR_UP);
 ;
-	.dbg	line, "scripts/gamePhase.h", 548
-L0B1F:	lda     _j
+	.dbg	line, "scripts/gamePhase.h", 577
+L0F6F:	lda     _j
 	and     #$10
-	beq     L0B20
+	beq     L0F70
 	lda     #$10
 	jsr     _checkPlayerMove
 ;
 ; if (j&PAD_DOWN)  checkPlayerMove(DIR_DOWN);
 ;
-	.dbg	line, "scripts/gamePhase.h", 549
-L0B20:	lda     _j
+	.dbg	line, "scripts/gamePhase.h", 578
+L0F70:	lda     _j
 	and     #$20
-	jeq     L08C7
+	jeq     L0C4A
 	lda     #$20
 	jsr     _checkPlayerMove
 ;
 ; else
 ;
-	.dbg	line, "scripts/gamePhase.h", 551
-	jmp     L08C7
+	.dbg	line, "scripts/gamePhase.h", 580
+	jmp     L0C4A
 ;
 ; if (j&PAD_LEFT)  player_nextDir = DIR_LEFT;
 ;
-	.dbg	line, "scripts/gamePhase.h", 553
-L09C1:	lda     _j
+	.dbg	line, "scripts/gamePhase.h", 582
+L0D88:	lda     _j
 	and     #$40
-	beq     L0B21
+	beq     L0F71
 	lda     #$40
 	sta     _player_nextDir
 ;
 ; if (j&PAD_RIGHT) player_nextDir = DIR_RIGHT;
 ;
-	.dbg	line, "scripts/gamePhase.h", 554
-L0B21:	lda     _j
+	.dbg	line, "scripts/gamePhase.h", 583
+L0F71:	lda     _j
 	and     #$80
-	beq     L0B22
+	beq     L0F72
 	lda     #$80
 	sta     _player_nextDir
 ;
 ; if (j&PAD_UP)  player_nextDir = DIR_UP;
 ;
-	.dbg	line, "scripts/gamePhase.h", 555
-L0B22:	lda     _j
+	.dbg	line, "scripts/gamePhase.h", 584
+L0F72:	lda     _j
 	and     #$10
-	beq     L0B23
+	beq     L0F73
 	lda     #$10
 	sta     _player_nextDir
 ;
 ; if (j&PAD_DOWN)  player_nextDir = DIR_DOWN;
 ;
-	.dbg	line, "scripts/gamePhase.h", 556
-L0B23:	lda     _j
+	.dbg	line, "scripts/gamePhase.h", 585
+L0F73:	lda     _j
 	and     #$20
-	jeq     L08C7
+	jeq     L0C4A
 	lda     #$20
 	sta     _player_nextDir
 ;
 ; while (1)
 ;
-	.dbg	line, "scripts/gamePhase.h", 362
-	jmp     L08C7
+	.dbg	line, "scripts/gamePhase.h", 370
+	jmp     L0C4A
 ;
 ; if (gameClear)
 ;
-	.dbg	line, "scripts/gamePhase.h", 561
-L08C8:	lda     _gameClear
-	beq     L09E5
+	.dbg	line, "scripts/gamePhase.h", 590
+L0C4B:	lda     _gameClear
+	beq     L0DAC
 ;
 ; music_play(MUSIC_CLEAR);
 ;
-	.dbg	line, "scripts/gamePhase.h", 563
+	.dbg	line, "scripts/gamePhase.h", 592
 	lda     #$02
 	jsr     _music_play
 ;
 ; ++gameLevel;
 ;
-	.dbg	line, "scripts/gamePhase.h", 564
+	.dbg	line, "scripts/gamePhase.h", 593
 	inc     _gameLevel
+;
+; if (gameLevel == LEVEL_END)
+;
+	.dbg	line, "scripts/gamePhase.h", 594
+	lda     _gameLevel
+	cmp     #$03
+	bne     L0DB5
 ;
 ; else
 ;
-	.dbg	line, "scripts/gamePhase.h", 566
-	jmp     L09EA
+	.dbg	line, "scripts/gamePhase.h", 599
+	jmp     L0F77
 ;
 ; music_play(MUSIC_LOSE);
 ;
-	.dbg	line, "scripts/gamePhase.h", 568
-L09E5:	lda     #$05
+	.dbg	line, "scripts/gamePhase.h", 601
+L0DAC:	lda     #$05
 	jsr     _music_play
 ;
 ; gameDone = TRUE;
 ;
-	.dbg	line, "scripts/gamePhase.h", 569
-	lda     #$01
+	.dbg	line, "scripts/gamePhase.h", 602
+L0F77:	lda     #$01
 	sta     _gameDone
 ;
 ; delay(END_DELAY);
 ;
-	.dbg	line, "scripts/gamePhase.h", 573
-L09EA:	lda     #$50
+	.dbg	line, "scripts/gamePhase.h", 606
+L0DB5:	lda     #$50
 	jsr     _delay
 ;
 ; pal_fade_to(0);
 ;
-	.dbg	line, "scripts/gamePhase.h", 576
+	.dbg	line, "scripts/gamePhase.h", 609
 	ldx     #$00
 	txa
 	jmp     _pal_fade_to
@@ -4218,64 +5326,252 @@ L09EA:	lda     #$50
 ;
 ; vram_adr(NAMETABLE_A);
 ;
-	.dbg	line, "scripts/resultPhase.h", 25
+	.dbg	line, "scripts/resultPhase.h", 28
 	ldx     #$20
 	lda     #$00
 	jsr     _vram_adr
 ;
 ; if (gameClear)
 ;
-	.dbg	line, "scripts/resultPhase.h", 26
+	.dbg	line, "scripts/resultPhase.h", 29
 	lda     _gameClear
-	beq     L0ACC
+	jeq     L0EB8
 ;
 ; vram_unrle(result_success);
 ;
-	.dbg	line, "scripts/resultPhase.h", 28
+	.dbg	line, "scripts/resultPhase.h", 31
 	lda     #<(_result_success)
 	ldx     #>(_result_success)
+	jsr     _vram_unrle
+;
+; if (totalItemsCollected5 > 0)
+;
+	.dbg	line, "scripts/resultPhase.h", 34
+	lda     _totalItemsCollected5
+	beq     L0F79
+;
+; vram_adr(SCORE_TEXT_ADR);
+;
+	.dbg	line, "scripts/resultPhase.h", 36
+	ldx     #$22
+	lda     #$4D
+	jsr     _vram_adr
+;
+; vram_put(0x10 + totalItemsCollected5);
+;
+	.dbg	line, "scripts/resultPhase.h", 37
+	lda     _totalItemsCollected5
+	clc
+	adc     #$10
+	jsr     _vram_put
+;
+; vram_put(0x10 + totalItemsCollected4);
+;
+	.dbg	line, "scripts/resultPhase.h", 38
+	lda     _totalItemsCollected4
+	clc
+	adc     #$10
+	jsr     _vram_put
+;
+; vram_put(0x10 + totalItemsCollected3);
+;
+	.dbg	line, "scripts/resultPhase.h", 39
+	lda     _totalItemsCollected3
+	clc
+	adc     #$10
+	jsr     _vram_put
+;
+; vram_put(0x10 + totalItemsCollected2);
+;
+	.dbg	line, "scripts/resultPhase.h", 40
+	lda     _totalItemsCollected2
+	clc
+	adc     #$10
+	jsr     _vram_put
+;
+; vram_put(0x10 + totalItemsCollected1);
+;
+	.dbg	line, "scripts/resultPhase.h", 41
+	lda     _totalItemsCollected1
+	clc
+	adc     #$10
+	jsr     _vram_put
+;
+; else if (totalItemsCollected4 > 0)
+;
+	.dbg	line, "scripts/resultPhase.h", 43
+	jmp     L0F1D
+L0F79:	lda     _totalItemsCollected4
+	beq     L0F7A
+;
+; vram_adr(SCORE_TEXT_ADR + 1);
+;
+	.dbg	line, "scripts/resultPhase.h", 45
+	ldx     #$22
+	lda     #$4E
+	jsr     _vram_adr
+;
+; vram_put(0x10 + totalItemsCollected4);
+;
+	.dbg	line, "scripts/resultPhase.h", 46
+	lda     _totalItemsCollected4
+	clc
+	adc     #$10
+	jsr     _vram_put
+;
+; vram_put(0x10 + totalItemsCollected3);
+;
+	.dbg	line, "scripts/resultPhase.h", 47
+	lda     _totalItemsCollected3
+	clc
+	adc     #$10
+	jsr     _vram_put
+;
+; vram_put(0x10 + totalItemsCollected2);
+;
+	.dbg	line, "scripts/resultPhase.h", 48
+	lda     _totalItemsCollected2
+	clc
+	adc     #$10
+	jsr     _vram_put
+;
+; vram_put(0x10 + totalItemsCollected1);
+;
+	.dbg	line, "scripts/resultPhase.h", 49
+	lda     _totalItemsCollected1
+	clc
+	adc     #$10
+	jsr     _vram_put
+;
+; else if (totalItemsCollected3 > 0)
+;
+	.dbg	line, "scripts/resultPhase.h", 51
+	jmp     L0F1D
+L0F7A:	lda     _totalItemsCollected3
+	beq     L0F7B
+;
+; vram_adr(SCORE_TEXT_ADR + 1);
+;
+	.dbg	line, "scripts/resultPhase.h", 53
+	ldx     #$22
+	lda     #$4E
+	jsr     _vram_adr
+;
+; vram_put(0x10 + totalItemsCollected3);
+;
+	.dbg	line, "scripts/resultPhase.h", 54
+	lda     _totalItemsCollected3
+	clc
+	adc     #$10
+	jsr     _vram_put
+;
+; vram_put(0x10 + totalItemsCollected2);
+;
+	.dbg	line, "scripts/resultPhase.h", 55
+	lda     _totalItemsCollected2
+	clc
+	adc     #$10
+	jsr     _vram_put
+;
+; vram_put(0x10 + totalItemsCollected1);
+;
+	.dbg	line, "scripts/resultPhase.h", 56
+	lda     _totalItemsCollected1
+	clc
+	adc     #$10
+	jsr     _vram_put
+;
+; else if (totalItemsCollected2 > 0)
+;
+	.dbg	line, "scripts/resultPhase.h", 58
+	jmp     L0F1D
+L0F7B:	lda     _totalItemsCollected2
+	beq     L0F01
+;
+; vram_adr(SCORE_TEXT_ADR + 2);
+;
+	.dbg	line, "scripts/resultPhase.h", 60
+	ldx     #$22
+	lda     #$4F
+	jsr     _vram_adr
+;
+; vram_put(0x10 + totalItemsCollected2);
+;
+	.dbg	line, "scripts/resultPhase.h", 61
+	lda     _totalItemsCollected2
+	clc
+	adc     #$10
+	jsr     _vram_put
+;
+; vram_put(0x10 + totalItemsCollected1);
+;
+	.dbg	line, "scripts/resultPhase.h", 62
+	lda     _totalItemsCollected1
+	clc
+	adc     #$10
+	jsr     _vram_put
 ;
 ; else
 ;
-	.dbg	line, "scripts/resultPhase.h", 30
-	jmp     L0B27
+	.dbg	line, "scripts/resultPhase.h", 64
+	jmp     L0F1D
+;
+; vram_adr(SCORE_TEXT_ADR + 2);
+;
+	.dbg	line, "scripts/resultPhase.h", 66
+L0F01:	ldx     #$22
+	lda     #$4F
+	jsr     _vram_adr
+;
+; vram_put(0x10 + totalItemsCollected1);
+;
+	.dbg	line, "scripts/resultPhase.h", 67
+	lda     _totalItemsCollected1
+	clc
+	adc     #$10
+	jsr     _vram_put
+;
+; else
+;
+	.dbg	line, "scripts/resultPhase.h", 70
+	jmp     L0F1D
 ;
 ; vram_unrle(result_failure);
 ;
-	.dbg	line, "scripts/resultPhase.h", 32
-L0ACC:	lda     #<(_result_failure)
+	.dbg	line, "scripts/resultPhase.h", 72
+L0EB8:	lda     #<(_result_failure)
 	ldx     #>(_result_failure)
-L0B27:	jsr     _vram_unrle
+	jsr     _vram_unrle
 ;
 ; ppu_on_bg();
 ;
-	.dbg	line, "scripts/resultPhase.h", 36
-	jsr     _ppu_on_bg
+	.dbg	line, "scripts/resultPhase.h", 76
+L0F1D:	jsr     _ppu_on_bg
 ;
 ; pal_fade_to(4);
 ;
-	.dbg	line, "scripts/resultPhase.h", 39
+	.dbg	line, "scripts/resultPhase.h", 79
 	ldx     #$00
 	lda     #$04
 	jsr     _pal_fade_to
 ;
 ; ppu_wait_frame();
 ;
-	.dbg	line, "scripts/resultPhase.h", 43
-L0AD6:	jsr     _ppu_wait_frame
+	.dbg	line, "scripts/resultPhase.h", 83
+L0F23:	jsr     _ppu_wait_frame
 ;
 ; if (pad_trigger(0)&PAD_START) break;
 ;
-	.dbg	line, "scripts/resultPhase.h", 46
+	.dbg	line, "scripts/resultPhase.h", 86
 	lda     #$00
 	jsr     _pad_trigger
 	ldx     #$00
 	and     #$08
-	beq     L0AD6
+	beq     L0F23
 ;
 ; pal_fade_to(0);
 ;
-	.dbg	line, "scripts/resultPhase.h", 49
+	.dbg	line, "scripts/resultPhase.h", 89
 	txa
 	jmp     _pal_fade_to
 	.dbg	line
@@ -4297,45 +5593,45 @@ L0AD6:	jsr     _ppu_wait_frame
 ;
 ; titlePhase();
 ;
-	.dbg	line, "scripts\main.c", 93
-L0AE1:	jsr     _titlePhase
+	.dbg	line, "scripts\main.c", 101
+L0F2E:	jsr     _titlePhase
 ;
-; gameLevel = 0;
+; gameLevel = LEVEL_START;
 ;
-	.dbg	line, "scripts\main.c", 95
+	.dbg	line, "scripts\main.c", 103
 	lda     #$00
 	sta     _gameLevel
 ;
 ; gameDone = FALSE;
 ;
-	.dbg	line, "scripts\main.c", 96
+	.dbg	line, "scripts\main.c", 104
 	sta     _gameDone
 ;
 ; while (!gameDone)
 ;
-	.dbg	line, "scripts\main.c", 98
-	jmp     L0AEC
+	.dbg	line, "scripts\main.c", 106
+	jmp     L0F39
 ;
 ; gamePhase();
 ;
-	.dbg	line, "scripts\main.c", 100
-L0AEA:	jsr     _gamePhase
+	.dbg	line, "scripts\main.c", 108
+L0F37:	jsr     _gamePhase
 ;
 ; while (!gameDone)
 ;
-	.dbg	line, "scripts\main.c", 98
-L0AEC:	lda     _gameDone
-	beq     L0AEA
+	.dbg	line, "scripts\main.c", 106
+L0F39:	lda     _gameDone
+	beq     L0F37
 ;
 ; resultPhase();
 ;
-	.dbg	line, "scripts\main.c", 103
+	.dbg	line, "scripts\main.c", 111
 	jsr     _resultPhase
 ;
 ; while (1) // Infinite loop
 ;
-	.dbg	line, "scripts\main.c", 91
-	jmp     L0AE1
+	.dbg	line, "scripts\main.c", 99
+	jmp     L0F2E
 	.dbg	line
 
 .endproc
