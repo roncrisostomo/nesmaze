@@ -765,7 +765,11 @@ _vram_write:
 
 ;void __fastcall__ music_play(unsigned char song);
 
+.if(FT_MUSIC_ENABLE)
 _music_play=FamiToneMusicPlay
+.else
+_music_play=FamiToneMusicStop
+.endif
 
 
 
