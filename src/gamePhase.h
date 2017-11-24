@@ -3,7 +3,7 @@
 *  @brief      	Game phase handler
 *  @author     	Ron
 *  @created 	November 17, 2017
-*  @modified   	November 19, 2017
+*  @modified   	November 24, 2017
 *      
 *  @par [explanation]
 *		> Holds code used exclusively in the game phase
@@ -74,7 +74,7 @@ const unsigned char playerMetasprite[] =
 	0, 7,0x4b,0,
 	8, 7,0x4c,0,
 	// End of file marker for metasprite array
-	128
+	MS_EOF
 };
 const unsigned char enemyMetasprite[] =
 {
@@ -82,7 +82,7 @@ const unsigned char enemyMetasprite[] =
 	8,-1,0x4e,0,
 	0, 7,0x4f,0,
 	8, 7,0x50,0,
-	128
+	MS_EOF
 };
 
 // Pre-initialized update list used during gameplay

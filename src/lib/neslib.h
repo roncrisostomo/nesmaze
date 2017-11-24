@@ -98,7 +98,7 @@ unsigned char __fastcall__ oam_spr(unsigned char x,unsigned char y,unsigned char
 //set metasprite in OAM buffer
 //meta sprite is a const unsigned char array, it contains four bytes per sprite
 //in order x offset, y offset, tile, attribute
-//x=128 is end of a meta sprite
+//MS_EOF marks the end of a meta sprite
 //returns sprid+4, which is offset for a next sprite
 
 unsigned char __fastcall__ oam_meta_spr(unsigned char x,unsigned char y,unsigned char sprid,const unsigned char *data);
@@ -283,6 +283,8 @@ void __fastcall__ delay(unsigned char frames);
 #define NT_UPD_HORZ		0x40
 #define NT_UPD_VERT		0x80
 #define NT_UPD_EOF		0xff
+
+#define MS_EOF			128
 
 //macro to calculate nametable address from X,Y in compile time
 
